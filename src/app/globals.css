@@ -1,13 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Project color palette from the design screenshots. */
-  --sand: #F6F1E8;
-  --warm-beige: #ECE3D5;
-  --walnut: #473B32;
-  --dusty-olive: #80816A;
-  --clay: #AF8A6A;
-  --soft-white: #FFFDF8;
+  /*
+    Main color theme from the reference image.
+    Change these five values later if the brand palette changes.
+  */
+  --background: #F6F1E8;
+  --section-alternate: #ECE3D5;
+  --text: #473B32;
+  --accent: #80816A;
+  --button: #AF8A6A;
+
+  /* RGB versions let us create transparent overlays using the same palette. */
+  --background-rgb: 246, 241, 232;
+  --section-alternate-rgb: 236, 227, 213;
+  --text-rgb: 71, 59, 50;
+  --accent-rgb: 128, 129, 106;
+
+  /* Older variable names still point to the new theme names for readability. */
+  --sand: var(--background);
+  --warm-beige: var(--section-alternate);
+  --walnut: var(--text);
+  --dusty-olive: var(--accent);
+  --clay: var(--button);
 }
 
 @theme inline {
@@ -51,7 +66,7 @@ a {
 }
 
 .hero-section::after {
-  background: rgba(34, 27, 23, 0.42);
+  background: rgba(var(--text-rgb), 0.46);
   content: "";
   inset: 0;
   position: absolute;
@@ -79,7 +94,7 @@ a {
 }
 
 .nav-group {
-  color: var(--soft-white);
+  color: var(--background);
   display: flex;
   flex-wrap: wrap;
   /* Slightly larger than before so the navigation is readable at desktop size. */
@@ -90,14 +105,14 @@ a {
 
 .nav-brand {
   /* This center wordmark is intentionally larger and brighter than nav links. */
-  color: var(--soft-white);
+  color: var(--background);
   font-size: clamp(1.28rem, 1.9vw, 1.72rem);
   font-weight: 700;
   grid-column: 2;
   letter-spacing: 0.2em;
   opacity: 1;
   text-align: center;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 16px rgba(var(--text-rgb), 0.55);
   text-transform: lowercase;
   white-space: nowrap;
 }
@@ -125,8 +140,8 @@ a {
 
 .mirror-frame {
   height: 100%;
-  /* The file is cream already; this shadow helps it stay readable on dark photos. */
-  filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.35));
+  /* The image itself now matches the background swatch: #F6F1E8. */
+  filter: drop-shadow(0 2px 18px rgba(var(--text-rgb), 0.35));
   object-fit: contain;
   opacity: 1;
   width: 100%;
@@ -134,7 +149,7 @@ a {
 
 .mirror-copy {
   align-items: center;
-  color: var(--soft-white);
+  color: var(--background);
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -173,8 +188,8 @@ a {
   background:
     repeating-linear-gradient(
       90deg,
-      rgba(128, 129, 106, 0.13) 0,
-      rgba(128, 129, 106, 0.13) 34px,
+      rgba(var(--accent-rgb), 0.13) 0,
+      rgba(var(--accent-rgb), 0.13) 34px,
       transparent 34px,
       transparent 68px
     ),
@@ -191,7 +206,7 @@ a {
 
 .showcase-photo {
   background: var(--sand);
-  box-shadow: 0 18px 40px rgba(71, 59, 50, 0.16);
+  box-shadow: 0 18px 40px rgba(var(--text-rgb), 0.16);
   overflow: hidden;
   position: absolute;
 }
@@ -226,7 +241,7 @@ a {
 
 .showcase-card {
   align-items: center;
-  background: rgba(246, 241, 232, 0.93);
+  background: rgba(var(--background-rgb), 0.93);
   border: 2px solid var(--walnut);
   color: var(--walnut);
   display: flex;
@@ -261,7 +276,7 @@ a {
 .showcase-card a,
 .text-button {
   background: var(--clay);
-  color: var(--soft-white);
+  color: var(--background);
   display: inline-flex;
   font-size: 0.78rem;
   font-weight: 700;
@@ -291,7 +306,7 @@ a {
 }
 
 .showcase-dots button {
-  background: rgba(71, 59, 50, 0.25);
+  background: rgba(var(--text-rgb), 0.25);
   border: 0;
   border-radius: 999px;
   cursor: pointer;
