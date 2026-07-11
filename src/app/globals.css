@@ -1,0 +1,423 @@
+@import "tailwindcss";
+
+:root {
+  /* Project color palette from the design screenshots. */
+  --sand: #F6F1E8;
+  --warm-beige: #ECE3D5;
+  --walnut: #473B32;
+  --dusty-olive: #80816A;
+  --clay: #AF8A6A;
+  --soft-white: #FFFDF8;
+}
+
+@theme inline {
+  --color-background: #F6F1E8;
+  --color-foreground: #473B32;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--sand);
+  color: var(--walnut);
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  transition: color 180ms ease, background-color 180ms ease, opacity 180ms ease;
+}
+
+.site-shell {
+  background: var(--sand);
+  min-height: 100vh;
+}
+
+/* SECTION 1: Header and hero */
+.hero-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 92vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-section::after {
+  background: rgba(34, 27, 23, 0.42);
+  content: "";
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.hero-image {
+  filter: saturate(0.78) contrast(0.95);
+}
+
+.main-nav {
+  align-items: center;
+  display: grid;
+  gap: clamp(18px, 3vw, 48px);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  left: 0;
+  letter-spacing: 0.18em;
+  /* Desktop nav starts at 100px from each side so links do not hug the edges. */
+  padding: 30px clamp(100px, 10vw, 160px);
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: 0;
+  z-index: 3;
+}
+
+.nav-group {
+  color: var(--soft-white);
+  display: flex;
+  flex-wrap: wrap;
+  /* Slightly larger than before so the navigation is readable at desktop size. */
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: clamp(16px, 3vw, 34px);
+}
+
+.nav-brand {
+  /* This center wordmark is intentionally larger and brighter than nav links. */
+  color: var(--soft-white);
+  font-size: clamp(1.28rem, 1.9vw, 1.72rem);
+  font-weight: 700;
+  grid-column: 2;
+  letter-spacing: 0.2em;
+  opacity: 1;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.nav-group-right {
+  grid-column: 3;
+  justify-content: flex-end;
+}
+
+.nav-group a:hover,
+.nav-brand:hover {
+  color: var(--warm-beige);
+}
+
+.mirror-logo {
+  align-items: center;
+  display: flex;
+  /* The mirror is a little larger so the bigger text still has room to breathe. */
+  height: clamp(275px, 36vw, 430px);
+  justify-content: center;
+  position: relative;
+  width: clamp(232px, 30vw, 348px);
+  z-index: 2;
+}
+
+.mirror-frame {
+  height: 100%;
+  /* The file is cream already; this shadow helps it stay readable on dark photos. */
+  filter: drop-shadow(0 2px 18px rgba(0, 0, 0, 0.35));
+  object-fit: contain;
+  opacity: 1;
+  width: 100%;
+}
+
+.mirror-copy {
+  align-items: center;
+  color: var(--soft-white);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  inset: 31% 22% 28%;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+}
+
+.mirror-copy span {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.mirror-detail {
+  /* Top mirror label: larger than before, but still much smaller than the name. */
+  font-size: clamp(0.56rem, 1vw, 0.74rem);
+}
+
+.mirror-specialty {
+  /* Bottom mirror label: slightly larger so "Photography" is easier to read. */
+  font-size: clamp(0.6rem, 1.05vw, 0.8rem);
+}
+
+.mirror-copy strong {
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: clamp(2.35rem, 5.1vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.82;
+  max-width: 100%;
+  text-transform: none;
+}
+
+/* SECTION 2: Rotating category collage */
+.showcase-section {
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(128, 129, 106, 0.13) 0,
+      rgba(128, 129, 106, 0.13) 34px,
+      transparent 34px,
+      transparent 68px
+    ),
+    var(--warm-beige);
+  padding: clamp(64px, 8vw, 110px) clamp(18px, 5vw, 72px);
+}
+
+.showcase-collage {
+  min-height: 620px;
+  margin: 0 auto;
+  max-width: 1120px;
+  position: relative;
+}
+
+.showcase-photo {
+  background: var(--sand);
+  box-shadow: 0 18px 40px rgba(71, 59, 50, 0.16);
+  overflow: hidden;
+  position: absolute;
+}
+
+.showcase-photo-1 {
+  aspect-ratio: 4 / 5;
+  left: 3%;
+  top: 5%;
+  width: min(24vw, 245px);
+}
+
+.showcase-photo-2 {
+  aspect-ratio: 3 / 4;
+  right: 2%;
+  top: 10%;
+  width: min(25vw, 270px);
+}
+
+.showcase-photo-3 {
+  aspect-ratio: 5 / 6;
+  bottom: 0;
+  left: 16%;
+  width: min(22vw, 230px);
+}
+
+.showcase-photo-4 {
+  aspect-ratio: 1 / 1.18;
+  bottom: 7%;
+  right: 18%;
+  width: min(20vw, 210px);
+}
+
+.showcase-card {
+  align-items: center;
+  background: rgba(246, 241, 232, 0.93);
+  border: 2px solid var(--walnut);
+  color: var(--walnut);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  left: 50%;
+  max-width: 560px;
+  padding: clamp(34px, 5vw, 58px);
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(88vw, 560px);
+  z-index: 2;
+}
+
+.showcase-card h2,
+.about-copy h2 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+.showcase-card p:not(.section-eyebrow),
+.about-copy p {
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.55;
+}
+
+.showcase-card a,
+.text-button {
+  background: var(--clay);
+  color: var(--soft-white);
+  display: inline-flex;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: 13px 22px;
+  text-transform: uppercase;
+}
+
+.showcase-card a:hover,
+.text-button:hover {
+  background: var(--walnut);
+}
+
+.section-eyebrow {
+  color: var(--dusty-olive);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.showcase-dots {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.showcase-dots button {
+  background: rgba(71, 59, 50, 0.25);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 12px;
+  padding: 0;
+  width: 12px;
+}
+
+.showcase-dots button.is-active {
+  background: var(--dusty-olive);
+  transform: scale(1.25);
+}
+
+/* SECTION 3: About Me */
+.about-section {
+  align-items: center;
+  background: var(--sand);
+  display: grid;
+  gap: clamp(34px, 7vw, 88px);
+  grid-template-columns: minmax(260px, 470px) minmax(280px, 560px);
+  justify-content: center;
+  padding: clamp(72px, 9vw, 130px) clamp(20px, 5vw, 72px);
+}
+
+.about-image-wrap {
+  aspect-ratio: 4 / 5.35;
+  background: var(--warm-beige);
+  max-width: 470px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.about-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.about-copy .text-button {
+  margin-top: 10px;
+  width: fit-content;
+}
+
+@media (max-width: 800px) {
+  .main-nav {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 22px clamp(22px, 7vw, 48px);
+  }
+
+  .nav-group,
+  .nav-group-right,
+  .nav-brand {
+    grid-column: 1;
+    justify-content: center;
+  }
+
+  .mirror-logo {
+    margin-top: 80px;
+  }
+
+  .showcase-collage {
+    display: grid;
+    gap: 14px;
+    min-height: 0;
+  }
+
+  .showcase-photo,
+  .showcase-card {
+    position: relative;
+  }
+
+  .showcase-photo {
+    inset: auto;
+    width: 100%;
+  }
+
+  .showcase-photo-1,
+  .showcase-photo-2,
+  .showcase-photo-3,
+  .showcase-photo-4 {
+    aspect-ratio: 4 / 5;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+  }
+
+  .showcase-photo-3,
+  .showcase-photo-4 {
+    display: none;
+  }
+
+  .showcase-card {
+    grid-row: 1;
+    left: auto;
+    max-width: none;
+    top: auto;
+    transform: none;
+    width: 100%;
+  }
+
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-section {
+    min-height: 86vh;
+  }
+
+  .nav-group {
+    font-size: 0.66rem;
+    gap: 12px;
+  }
+
+  .showcase-section {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .about-section {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
