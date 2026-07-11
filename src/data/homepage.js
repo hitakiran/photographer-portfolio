@@ -28,6 +28,8 @@ export const categoryShowcase = [
     id: "business-branding",
     category: "Business/Branding",
     label: "Personal brands with presence, polish, and personality.",
+    frameShape: "shape-one",
+    layoutVariant: "layout-one",
     photos: [
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=85",
@@ -39,6 +41,8 @@ export const categoryShowcase = [
     id: "portraits",
     category: "Portraits",
     label: "Soft, expressive portraits made to feel like you.",
+    frameShape: "shape-two",
+    layoutVariant: "layout-two",
     photos: [
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=700&q=85",
@@ -50,6 +54,8 @@ export const categoryShowcase = [
     id: "couples",
     category: "Couples",
     label: "Honest connection, gentle direction, and room to be playful.",
+    frameShape: "shape-three",
+    layoutVariant: "layout-three",
     photos: [
       "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=700&q=85",
@@ -61,6 +67,8 @@ export const categoryShowcase = [
     id: "wedding",
     category: "Wedding",
     label: "Romantic wedding stories with an editorial, timeless feeling.",
+    frameShape: "shape-four",
+    layoutVariant: "layout-four",
     photos: [
       "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=700&q=85",
@@ -72,6 +80,8 @@ export const categoryShowcase = [
     id: "families",
     category: "Families",
     label: "Warm family photos that feel relaxed, connected, and real.",
+    frameShape: "shape-five",
+    layoutVariant: "layout-five",
     photos: [
       "https://images.unsplash.com/photo-1506836467174-27f1042aa48c?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=700&q=85",
