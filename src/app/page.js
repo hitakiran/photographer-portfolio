@@ -83,8 +83,6 @@ export default function Home() {
               className="object-cover"
             />
           </div>
-          {/* Flower decoration tucks into the top-right corner of the frame. */}
-          <span className="about-frame-flower" aria-hidden="true" />
         </div>
 
         <div className="about-copy">
