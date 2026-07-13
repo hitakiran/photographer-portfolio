@@ -185,6 +185,49 @@ a {
 
 /* SECTION 2: Rotating category collage */
 .showcase-section {
+  background: var(--warm-beige);
+}
+
+.showcase-tab-bar {
+  /* Solid bar like the reference row above the patterned collage area. */
+  background: var(--sand);
+  border-bottom: 1px solid rgba(var(--text-rgb), 0.12);
+  padding: clamp(24px, 3vw, 34px) clamp(14px, 3vw, 44px);
+  position: relative;
+  z-index: 2;
+}
+
+.showcase-tab-bar::after {
+  /*
+    Decorative lace divider between the tab bar and striped area.
+    It is made with repeated CSS gradients, so no extra image file is needed.
+  */
+  background:
+    linear-gradient(var(--dusty-olive), var(--dusty-olive)) top / 100% 2px
+      no-repeat,
+    radial-gradient(
+        circle at 12px 2px,
+        transparent 0 7px,
+        rgba(var(--accent-rgb), 0.9) 7.5px 9px,
+        transparent 9.5px
+      )
+      top / 24px 16px repeat-x,
+    radial-gradient(
+        ellipse at 12px 19px,
+        rgba(var(--accent-rgb), 0.9) 0 3px,
+        transparent 3.5px
+      )
+      top / 24px 24px repeat-x;
+  bottom: -24px;
+  content: "";
+  height: 24px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.showcase-pattern-area {
   background:
     repeating-linear-gradient(
       90deg,
@@ -194,7 +237,7 @@ a {
       transparent 68px
     ),
     var(--warm-beige);
-  padding: clamp(54px, 7vw, 90px) clamp(14px, 3vw, 44px)
+  padding: clamp(58px, 7vw, 94px) clamp(14px, 3vw, 44px)
     clamp(64px, 8vw, 110px);
 }
 
@@ -204,7 +247,7 @@ a {
   flex-wrap: wrap;
   gap: clamp(14px, 3vw, 42px);
   justify-content: center;
-  margin: 0 auto clamp(42px, 6vw, 76px);
+  margin: 0 auto;
   max-width: 1380px;
 }
 
@@ -305,71 +348,71 @@ a {
 }
 
 .layout-one .showcase-photo-1 {
-  transform: translateY(-8px) rotate(-1deg);
+  transform: translateY(-8px);
 }
 
 .layout-one .showcase-photo-2 {
-  transform: translateY(22px) rotate(1deg);
+  transform: translateY(22px);
 }
 
 .layout-one .showcase-photo-3 {
-  transform: translateX(42px) rotate(1deg);
+  transform: translateX(42px);
 }
 
 .layout-one .showcase-photo-4 {
-  transform: translateX(-42px) rotate(-1deg);
+  transform: translateX(-42px);
 }
 
 .layout-two .showcase-photo-1 {
-  transform: translate(26px, 28px) rotate(-2deg);
+  transform: translate(26px, 28px);
 }
 
 .layout-two .showcase-photo-2 {
-  transform: translateY(-12px) rotate(1.5deg);
+  transform: translateY(-12px);
 }
 
 .layout-two .showcase-photo-3 {
-  transform: translateX(4px) rotate(0.5deg);
+  transform: translateX(4px);
 }
 
 .layout-two .showcase-photo-4 {
-  transform: translateX(-70px) rotate(-1deg);
+  transform: translateX(-70px);
 }
 
 .layout-three .showcase-photo-1 {
-  transform: translateY(18px) rotate(1deg);
+  transform: translateY(18px);
 }
 
 .layout-three .showcase-photo-2 {
-  transform: translate(-24px, 30px) rotate(-1deg);
+  transform: translate(-24px, 30px);
 }
 
 .layout-three .showcase-photo-3 {
-  transform: translate(58px, -10px) rotate(1deg);
+  transform: translate(58px, -10px);
 }
 
 .layout-three .showcase-photo-4 {
-  transform: translateY(-6px) rotate(1deg);
+  transform: translateY(-6px);
 }
 
 .layout-four .showcase-photo-1 {
-  transform: translateX(52px) rotate(-1.5deg);
+  transform: translateX(52px);
 }
 
 .layout-four .showcase-photo-2 {
-  transform: translateY(34px) rotate(1deg);
+  transform: translateY(34px);
 }
 
 .layout-four .showcase-photo-3 {
-  transform: translateY(-18px) rotate(-1.5deg);
+  transform: translateY(-18px);
 }
 
 .layout-four .showcase-photo-4 {
-  transform: translateX(-56px) rotate(0.5deg);
+  transform: translateX(-56px);
 }
 
 .layout-five .showcase-photo-1 {
-  transform: translate(20px, 46px) rotate(1deg);
+  transform: translate(20px, 46px);
 }
 
 .layout-five .showcase-photo-2 {
@@ -381,35 +424,31 @@ a {
 }
 
 .layout-five .showcase-photo-4 {
-  transform: translate(-16px, -24px) rotate(-1deg);
+  transform: translate(-16px, -24px);
 }
 
-.showcase-card-frame {
+.showcase-card-block {
   align-self: center;
-  aspect-ratio: 20 / 13;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   grid-column: 2;
   grid-row: 1 / 3;
   justify-self: center;
-  min-height: 340px;
-  position: relative;
-  width: 100%;
+  transform: translateY(-76px);
+  width: min(100%, 580px);
   z-index: 3;
 }
 
-.showcase-frame-svg {
-  height: 100%;
-  inset: 0;
-  overflow: visible;
-  position: absolute;
+.showcase-card-frame {
+  /* sectionbox.png is the ticket-style frame behind the text. */
+  aspect-ratio: 1 / 1;
+  background-image: url("/images/sectionbox.png?v=2");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: relative;
   width: 100%;
-  z-index: 0;
-}
-
-.showcase-frame-svg path {
-  fill: rgba(var(--background-rgb), 0.93);
-  stroke: var(--dusty-olive);
-  stroke-width: 2.5;
-  vector-effect: non-scaling-stroke;
 }
 
 .showcase-card {
@@ -418,23 +457,33 @@ a {
   color: var(--walnut);
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  min-height: 340px;
+  gap: 14px;
+  height: 100%;
   justify-content: center;
-  padding: clamp(44px, 6vw, 72px) clamp(36px, 6vw, 78px);
+  padding: clamp(108px, 8vw, 134px) clamp(82px, 7vw, 118px);
   position: relative;
   text-align: center;
   width: 100%;
-  z-index: 1;
 }
 
 .showcase-card h2,
 .about-copy h2 {
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 0.86;
   text-transform: uppercase;
+}
+
+.showcase-card h2 {
+  /* The longest category name needs to stay inside the decorative frame. */
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.about-copy h2 {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
 }
 
 .showcase-card p:not(.section-eyebrow),
@@ -448,6 +497,9 @@ a {
   flex-wrap: wrap;
   gap: 12px;
   justify-content: center;
+  margin-top: -16px;
+  position: relative;
+  z-index: 4;
 }
 
 .showcase-actions a,
@@ -465,6 +517,19 @@ a {
 .showcase-actions a:hover,
 .text-button:hover {
   background: var(--walnut);
+}
+
+.showcase-section-decor {
+  /* sectiondecor.png is the ribbon/bow image placed under the buttons. */
+  background-image: url("/images/sectiondecor.png?v=2");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: block;
+  height: clamp(54px, 6vw, 86px);
+  margin-top: 4px;
+  pointer-events: none;
+  width: min(52%, 300px);
 }
 
 .section-eyebrow {
@@ -506,21 +571,111 @@ a {
   grid-template-columns: minmax(260px, 470px) minmax(280px, 560px);
   justify-content: center;
   padding: clamp(72px, 9vw, 130px) clamp(20px, 5vw, 72px);
+  position: relative;
 }
 
 .about-image-wrap {
-  aspect-ratio: 4 / 5.35;
-  background: var(--warm-beige);
-  max-width: 470px;
-  overflow: hidden;
+  aspect-ratio: 4 / 5.1;
+  isolation: isolate;
+  max-width: 440px;
+  overflow: visible;
   position: relative;
   width: 100%;
+}
+
+.about-photo-window {
+  /*
+    The photo is inset so border.png can sit around it like a real frame.
+    These percentages match the open center of the frame artwork.
+  */
+  inset: 14% 13.5% 17%;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+.about-frame-border {
+  /* border.png is the only visible frame around the photo. */
+  background-image: url("/images/border.png?v=2");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 108% auto;
+  display: block;
+  inset: -4%;
+  pointer-events: none;
+  position: absolute;
+  z-index: 3;
+}
+
+.about-frame-flower {
+  /*
+    The flower image has a large white canvas around the artwork.
+    This box crops into the image so only the flowers sit on the corner.
+  */
+  background-image: url("/images/flowers.png?v=2");
+  background-position: 52% 58%;
+  background-repeat: no-repeat;
+  background-size: 235%;
+  display: block;
+  height: clamp(106px, 12vw, 142px);
+  pointer-events: none;
+  position: absolute;
+  right: clamp(-64px, -4.6vw, -38px);
+  top: clamp(-48px, -3.5vw, -30px);
+  width: clamp(150px, 16vw, 196px);
+  z-index: 4;
 }
 
 .about-copy {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position: relative;
+}
+
+.about-stamp {
+  /*
+    The wax seal is separate from the photo frame and sits near the
+    upper-right of the About text area, like the reference.
+  */
+  background-image: url("/images/stamp.png?v=2");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 165%;
+  display: block;
+  height: clamp(76px, 8vw, 104px);
+  pointer-events: none;
+  position: absolute;
+  right: clamp(4px, 5vw, 58px);
+  top: clamp(-68px, -5vw, -42px);
+  width: clamp(76px, 8vw, 104px);
+  z-index: 2;
+}
+
+.about-eyebrow {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+}
+
+.about-eyebrow-script {
+  /* Reuse the same script font already used inside the hero mirror logo. */
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+
+.about-copy h2.about-heading-script {
+  /* Carla's name uses the existing script font for brand consistency. */
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: clamp(4rem, 9vw, 6.5rem);
+  font-variant-caps: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.9;
+  text-transform: none;
 }
 
 .about-copy .text-button {
@@ -576,6 +731,7 @@ a {
   }
 
   .showcase-photo,
+  .showcase-card-block,
   .showcase-card-frame {
     position: relative;
   }
@@ -613,19 +769,30 @@ a {
   }
 
   .showcase-card {
-    min-height: 310px;
-    padding: 48px 26px;
+    padding: 74px 42px;
   }
 
-  .showcase-card-frame {
+  .showcase-card-block {
     aspect-ratio: auto;
     grid-column: 1 / -1;
     grid-row: 1;
     left: auto;
-    min-height: 330px;
     top: auto;
     transform: none;
     width: 100%;
+  }
+
+  .showcase-card-frame {
+    max-width: 420px;
+  }
+
+  .showcase-actions {
+    margin-top: -10px;
+  }
+
+  .showcase-section-decor {
+    height: 60px;
+    width: min(64%, 260px);
   }
 
   .about-section {
@@ -641,11 +808,6 @@ a {
   .nav-group {
     font-size: 0.66rem;
     gap: 12px;
-  }
-
-  .showcase-section {
-    padding-left: 14px;
-    padding-right: 14px;
   }
 
   .about-section {

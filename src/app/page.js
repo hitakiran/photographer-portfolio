@@ -71,18 +71,34 @@ export default function Home() {
       {/* Section 3: placeholder About Me section. */}
       <section className="about-section" id="about" aria-labelledby="about-heading">
         <div className="about-image-wrap">
-          <Image
-            src={aboutContent.image_url}
-            alt="Placeholder portrait of photographer Carla Santos"
-            fill
-            sizes="(max-width: 768px) 90vw, 470px"
-            className="object-cover"
-          />
+          {/* border.png is the only frame around the portrait. */}
+          <span className="about-frame-border" aria-hidden="true" />
+          {/* The photo sits inside the open center of the frame image. */}
+          <div className="about-photo-window">
+            <Image
+              src={aboutContent.image_url}
+              alt="Placeholder portrait of photographer Carla Santos"
+              fill
+              sizes="(max-width: 768px) 90vw, 420px"
+              className="object-cover"
+            />
+          </div>
+          {/* Flower decoration tucks into the top-right corner of the frame. */}
+          <span className="about-frame-flower" aria-hidden="true" />
         </div>
 
         <div className="about-copy">
-          <p className="section-eyebrow">{aboutContent.eyebrow}</p>
-          <h2 id="about-heading">{aboutContent.heading}</h2>
+          {/* Stamp decoration sits near the top-right of the About text area. */}
+          <span className="about-stamp" aria-hidden="true" />
+          {/* Split "ABOUT me" so each word can use its own existing font. */}
+          <p className="section-eyebrow about-eyebrow">
+            <span>{aboutContent.eyebrow}</span>
+            <span className="about-eyebrow-script">me</span>
+          </p>
+          {/* This heading reuses the same script font as the mirror logo. */}
+          <h2 className="about-heading-script" id="about-heading">
+            {aboutContent.heading}
+          </h2>
           {aboutContent.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
