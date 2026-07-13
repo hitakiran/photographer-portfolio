@@ -47,7 +47,11 @@ a {
 
 button,
 a {
-  transition: color 180ms ease, background-color 180ms ease, opacity 180ms ease;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    opacity 180ms ease,
+    transform 180ms ease;
 }
 
 .site-shell {
@@ -127,6 +131,19 @@ a {
   color: var(--warm-beige);
 }
 
+.hero-content {
+  align-items: center;
+  color: var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  padding: 120px 20px 56px;
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
 .mirror-logo {
   align-items: center;
   display: flex;
@@ -183,6 +200,54 @@ a {
   text-transform: none;
 }
 
+.hero-tagline {
+  color: var(--background);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  line-height: 1.5;
+  margin: 4px 0 0;
+  max-width: 520px;
+  text-shadow: 0 2px 16px rgba(var(--text-rgb), 0.65);
+}
+
+.hero-portfolio-button {
+  margin-top: 2px;
+}
+
+.hero-scroll-link {
+  align-items: center;
+  animation: hero-arrow-bounce 1.8s ease-in-out infinite;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  margin-top: 2px;
+  opacity: 0.9;
+  width: 34px;
+}
+
+.hero-scroll-link:hover {
+  opacity: 1;
+}
+
+.hero-scroll-arrow {
+  border-bottom: 2px solid var(--background);
+  border-right: 2px solid var(--background);
+  display: block;
+  height: 14px;
+  transform: rotate(45deg);
+  width: 14px;
+}
+
+@keyframes hero-arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
 /* SECTION 2: Rotating category collage */
 .showcase-section {
   background: var(--warm-beige);
@@ -228,9 +293,10 @@ a {
     ),
     var(--warm-beige);
   /*
-    Extra top padding gives the lace divider room before the collage begins.
+    Extra top padding creates breathing room between the lace divider and
+    the ticket/photo collage below it.
   */
-  padding: clamp(92px, 8vw, 128px) clamp(14px, 3vw, 44px)
+  padding: clamp(132px, 10vw, 176px) clamp(14px, 3vw, 44px)
     clamp(64px, 8vw, 110px);
 }
 
@@ -506,6 +572,7 @@ a {
 .showcase-actions a,
 .text-button {
   background: var(--clay);
+  border-radius: 999px;
   color: var(--background);
   display: inline-flex;
   font-size: 0.78rem;
@@ -570,7 +637,10 @@ a {
   background: var(--sand);
   display: grid;
   gap: clamp(34px, 7vw, 88px);
-  grid-template-columns: minmax(260px, 470px) minmax(280px, 560px);
+  /*
+    The first column is a little wider so the framed portrait can be larger.
+  */
+  grid-template-columns: minmax(290px, 575px) minmax(280px, 560px);
   justify-content: center;
   padding: clamp(72px, 9vw, 130px) clamp(20px, 5vw, 72px);
   position: relative;
@@ -582,8 +652,7 @@ a {
     shape and lets the lace artwork scale inside it.
   */
   aspect-ratio: 1 / 1;
-  isolation: isolate;
-  max-width: 500px;
+  max-width: 590px;
   overflow: visible;
   position: relative;
   width: 100%;
@@ -592,13 +661,13 @@ a {
 .about-photo-window {
   /*
     These inset values match the open center of the new border.png frame.
-    The photo fills this window edge-to-edge without stretching.
+    The photo sits above the lace image so it stays fully visible.
   */
   border-radius: 0;
   inset: 7% 16.6% 7% 24.7%;
   overflow: hidden;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
 }
 
 .about-photo-window img {
@@ -608,7 +677,10 @@ a {
 }
 
 .about-frame-border {
-  /* border.png is the only visible frame around the photo. */
+  /*
+    border.png is the lace frame. It sits behind the portrait so the PNG's
+    white background can blend into the Sand page color.
+  */
   background-image: url("/images/border.png?v=6");
   background-position: center;
   background-repeat: no-repeat;
@@ -618,7 +690,7 @@ a {
   mix-blend-mode: multiply;
   pointer-events: none;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
 }
 
 .about-copy {
@@ -676,6 +748,15 @@ a {
 .about-copy .text-button {
   margin-top: 10px;
   width: fit-content;
+}
+
+/*
+  Shared button shape: this repeats the radius after section-specific rules
+  so every call-to-action keeps the same rounded style.
+*/
+.showcase-actions a,
+.text-button {
+  border-radius: 999px;
 }
 
 @media (max-width: 1100px) {

@@ -45,23 +45,39 @@ export default function Home() {
           </nav>
         </header>
 
-        {/* The mirror image and the logo words are separate layers for easy editing. */}
-        <div className="mirror-logo" aria-label="Carla Santos, Since 2019">
-          <Image
-            src="/brand/mirror-frame-cream.png"
-            alt=""
-            width={300}
-            height={372}
-            priority
-            className="mirror-frame"
-          />
-          <div className="mirror-copy">
-            {/* Small top label inside the mirror. */}
-            <span className="mirror-detail">{heroContent.since}</span>
-            <strong>{heroContent.name}</strong>
-            {/* Small bottom label inside the mirror. */}
-            <span className="mirror-specialty">{heroContent.specialty}</span>
+        {/* This group keeps the mirror, tagline, button, and arrow centered together. */}
+        <div className="hero-content">
+          {/* The mirror image and the logo words are separate layers for easy editing. */}
+          <div className="mirror-logo" aria-label="Carla Santos, Since 2019">
+            <Image
+              src="/brand/mirror-frame-cream.png"
+              alt=""
+              width={300}
+              height={372}
+              priority
+              className="mirror-frame"
+            />
+            <div className="mirror-copy">
+              {/* Small top label inside the mirror. */}
+              <span className="mirror-detail">{heroContent.since}</span>
+              <strong>{heroContent.name}</strong>
+              {/* Small bottom label inside the mirror. */}
+              <span className="mirror-specialty">{heroContent.specialty}</span>
+            </div>
           </div>
+
+          {/* Short editable intro line under the mirror logo. */}
+          <p className="hero-tagline">{heroContent.tagline}</p>
+
+          {/* This button links to the future Portfolio page. */}
+          <a className="text-button hero-portfolio-button" href="/portfolio">
+            {heroContent.portfolioButton}
+          </a>
+
+          {/* The arrow links to the next homepage section. */}
+          <a className="hero-scroll-link" href="#styles" aria-label="Scroll to photography styles">
+            <span className="hero-scroll-arrow" aria-hidden="true" />
+          </a>
         </div>
       </section>
 

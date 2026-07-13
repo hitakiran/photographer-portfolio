@@ -29,7 +29,7 @@ export default function CategoryShowcase({ categories }) {
   }
 
   return (
-    <section className="showcase-section" aria-labelledby="showcase-heading">
+    <section className="showcase-section" id="styles" aria-labelledby="showcase-heading">
       {/* The tabs sit in their own solid bar, separate from the striped collage. */}
       <div className="showcase-tab-bar">
         <div className="showcase-tabs" role="tablist" aria-label="Photography styles">

@@ -19,6 +19,8 @@ export const heroContent = {
   name: "Carla Santos",
   since: "since 2019",
   specialty: "Photography",
+  tagline: "Bay Area photographer capturing timeless, honest moments.",
+  portfolioButton: "View Portfolio",
   image_url:
     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85",
 };
