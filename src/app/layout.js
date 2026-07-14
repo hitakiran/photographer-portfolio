@@ -1,5 +1,6 @@
 import { Cormorant_Garamond, Pinyon_Script } from "next/font/google";
 import "./globals.css";
+import "./home-sections.css";
 
 // Cormorant Garamond is the tall, elegant serif used for headings and body text.
 const displayFont = Cormorant_Garamond({

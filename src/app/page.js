@@ -1,10 +1,17 @@
 import Image from "next/image";
 import CategoryShowcase from "@/components/CategoryShowcase";
+import ContactFooter from "@/components/ContactFooter";
+import MarqueeStrip from "@/components/MarqueeStrip";
+import ReviewsSection from "@/components/ReviewsSection";
+import StatsSection from "@/components/StatsSection";
 import {
   aboutContent,
   categoryShowcase,
+  contactContent,
   heroContent,
   navLinks,
+  reviewsContent,
+  statsContent,
 } from "@/data/homepage";
 
 export default function Home() {
@@ -121,6 +128,18 @@ export default function Home() {
           </a>
         </div>
       </section>
+
+      {/* Section 4: simple animated proof points for social trust. */}
+      <StatsSection content={statsContent} />
+
+      {/* Small scrolling brand strip between stats and reviews. */}
+      <MarqueeStrip />
+
+      {/* Section 5: rotating placeholder reviews from future clients. */}
+      <ReviewsSection content={reviewsContent} />
+
+      {/* Section 6: contact form UI and footer navigation. */}
+      <ContactFooter content={contactContent} />
     </main>
   );
 }

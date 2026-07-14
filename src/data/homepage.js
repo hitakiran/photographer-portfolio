@@ -19,7 +19,7 @@ export const heroContent = {
   name: "Carla Santos",
   since: "since 2019",
   specialty: "Photography",
-  tagline: "Bay Area photographer capturing timeless, honest moments.",
+  tagline: "A Bay Area photographer.",
   portfolioButton: "View Portfolio",
   image_url:
     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85",
@@ -96,5 +96,102 @@ export const aboutContent = {
   paragraphs: [
     "Placeholder bio text: Carla is a portrait, wedding, and lifestyle photographer who creates warm, intentional images for clients who want their story documented with care.",
     "Her sessions are calm, guided, and personal. The goal is to help each client feel comfortable in front of the camera while creating photographs that feel elevated and true to them.",
+  ],
+};
+
+export const statsContent = {
+  heading: "My Stats",
+  stats: [
+    {
+      id: "years",
+      value: 7,
+      displayValue: "7",
+      label: "Years of Experience",
+    },
+    {
+      id: "photos",
+      value: 50000,
+      displayValue: "50,000+",
+      label: "Photos Delivered",
+    },
+    {
+      id: "followers",
+      value: 70,
+      displayValue: "70K",
+      label: "Followers",
+    },
+    {
+      id: "cities",
+      value: 12,
+      displayValue: "12",
+      label: "Cities Traveled",
+    },
+  ],
+};
+
+export const reviewsContent = {
+  heading: "What clients are saying",
+  reviews: [
+    {
+      id: "alice",
+      name: "Alice",
+      text: "Carla made the whole session feel calm and easy. The photos feel timeless, natural, and so true to us.",
+    },
+    {
+      id: "jordan",
+      name: "Jordan",
+      text: "Every image felt thoughtful and beautifully directed. We loved how comfortable she made us feel.",
+    },
+    {
+      id: "priya",
+      name: "Priya",
+      text: "The gallery was warm, elegant, and full of the small moments we hoped someone would notice.",
+    },
+    {
+      id: "sam",
+      name: "Sam",
+      text: "Professional, kind, and incredibly talented. Carla captured our family exactly as we are.",
+    },
+  ],
+};
+
+export const contactContent = {
+  faqText: "Have questions? We may have your answer in our FAQ section — take a quick look ",
+  faqLinkLabel: "here",
+  heading: "Contact me via the form below & I'll get back to you as soon as I can.",
+  details: [
+    {
+      label: "Email",
+      value: "capturedbycarla@example.com",
+      href: "mailto:capturedbycarla@example.com",
+    },
+    {
+      label: "Phone",
+      value: "(000) 000-0000",
+      href: "tel:0000000000",
+    },
+    {
+      label: "Address",
+      value: "Bay Area, California",
+    },
+  ],
+  socialLinks: [
+    { label: "Instagram", shortLabel: "IG", href: "https://instagram.com" },
+    { label: "Facebook", shortLabel: "FB", href: "https://facebook.com" },
+    { label: "TikTok", shortLabel: "TT", href: "https://tiktok.com" },
+  ],
+  formFields: [
+    { id: "contact-name", label: "Name", type: "text" },
+    { id: "contact-phone", label: "Phone", type: "tel" },
+    { id: "contact-email", label: "Email", type: "email" },
+  ],
+  footerText: "Bay Area photographer creating warm, timeless images since 2019.",
+  footerNav: [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Investment", href: "/investment" },
+    { label: "Contact", href: "#contact" },
   ],
 };

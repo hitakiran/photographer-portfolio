@@ -1,0 +1,590 @@
+/*
+  Styles for the Stats and Reviews sections.
+  Keeping these newer sections in their own file makes them easy to find later.
+*/
+
+/* SECTION 4: Stats */
+.stats-section {
+  background: var(--warm-beige);
+  overflow: hidden;
+  padding: clamp(78px, 8vw, 108px) clamp(20px, 5vw, 72px)
+    clamp(54px, 6vw, 82px);
+  position: relative;
+}
+
+.stats-section::before {
+  /*
+    Reuse the same lace strip as the category section.
+    Repeating the image keeps the lace crisp instead of stretching it.
+  */
+  background-image: url("/images/design.png?v=1");
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto 46px;
+  content: "";
+  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
+    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  height: 46px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.stats-inner {
+  margin: 0 auto;
+  max-width: 1180px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+
+.stats-inner h2,
+.reviews-inner h2 {
+  color: var(--walnut);
+  font-size: clamp(2.6rem, 5.8vw, 5rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  margin: 0 auto;
+  max-width: 760px;
+  text-transform: uppercase;
+}
+
+.stats-grid {
+  display: grid;
+  gap: clamp(18px, 3vw, 34px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(28px, 4vw, 46px);
+}
+
+.stat-card {
+  border-top: 1px solid rgba(var(--text-rgb), 0.18);
+  padding: clamp(24px, 4vw, 38px) 10px 0;
+}
+
+.stat-card strong {
+  color: var(--clay);
+  display: block;
+  font-size: clamp(3.2rem, 6vw, 5.8rem);
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.stat-card span {
+  color: var(--dusty-olive);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  margin-top: 18px;
+  text-transform: uppercase;
+}
+
+/* Small brand marquee between Stats and Reviews */
+.marquee-strip {
+  background: var(--clay);
+  color: var(--sand);
+  overflow: hidden;
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  animation: marquee-scroll 34s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.marquee-item {
+  align-items: center;
+  display: inline-flex;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.marquee-divider {
+  color: rgba(var(--background-rgb), 0.72);
+  display: inline-block;
+  margin: 0 22px;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* SECTION 5: Reviews */
+.reviews-section {
+  background: var(--sand);
+  padding: clamp(72px, 9vw, 126px) clamp(20px, 5vw, 72px);
+}
+
+.reviews-inner {
+  margin: 0 auto;
+  max-width: 1420px;
+  text-align: center;
+}
+
+.reviews-window {
+  height: clamp(320px, 31vw, 390px);
+  margin: clamp(38px, 6vw, 70px) auto 0;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  height: 100%;
+  transition: transform 700ms ease;
+  will-change: transform;
+}
+
+.reviews-track.is-resetting {
+  transition: none;
+}
+
+.review-card {
+  align-items: flex-start;
+  background: var(--warm-beige);
+  border: 1px solid rgba(var(--text-rgb), 0.1);
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(var(--text-rgb), 0.08);
+  color: var(--walnut);
+  display: flex;
+  flex: 0 0 calc((100% - 72px) / 4);
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 5vw, 48px);
+  position: relative;
+  text-align: left;
+}
+
+.review-stars {
+  color: var(--clay);
+  display: flex;
+  font-size: 1.25rem;
+  gap: 7px;
+  letter-spacing: 0.05em;
+}
+
+.review-card p {
+  font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+  line-height: 1.55;
+  margin: 22px 0 24px;
+}
+
+.review-card strong {
+  align-self: flex-end;
+  color: var(--dusty-olive);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.review-dots {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.review-dots button {
+  background: rgba(var(--text-rgb), 0.25);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  height: 12px;
+  padding: 0;
+  width: 12px;
+}
+
+.review-dots button.is-active {
+  background: var(--dusty-olive);
+  transform: scale(1.25);
+}
+
+/* SECTION 6: Contact */
+.contact-section {
+  background: var(--sand);
+  border-top: 1px solid rgba(var(--text-rgb), 0.14);
+  overflow: hidden;
+  padding: clamp(116px, 10vw, 152px) clamp(20px, 5vw, 72px)
+    clamp(72px, 9vw, 124px);
+  position: relative;
+}
+
+.contact-section::before {
+  /*
+    design.png repeats across the top so the lace stays crisp and matches
+    the category/stats decorative dividers.
+  */
+  background-image: url("/images/design.png?v=1");
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto 46px;
+  content: "";
+  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
+    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  height: 46px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.contact-inner {
+  margin: 0 auto;
+  max-width: 1120px;
+  text-align: center;
+}
+
+.contact-faq-note {
+  color: var(--walnut);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 auto 34px;
+  max-width: 460px;
+}
+
+.contact-faq-note a {
+  border-bottom: 1px solid var(--dusty-olive);
+  color: var(--dusty-olive);
+  font-weight: 700;
+}
+
+.contact-inner h2 {
+  color: var(--walnut);
+  font-size: clamp(2.1rem, 4.8vw, 4.2rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.08;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.contact-layout {
+  display: grid;
+  gap: clamp(38px, 7vw, 86px);
+  grid-template-columns: minmax(220px, 0.8fr) 1px minmax(280px, 1.3fr);
+  margin-top: clamp(48px, 7vw, 76px);
+  text-align: left;
+}
+
+.contact-layout::before {
+  /* This pseudo-element creates the vertical divider between columns. */
+  align-self: stretch;
+  background: rgba(var(--text-rgb), 0.42);
+  content: "";
+  grid-column: 2;
+  grid-row: 1;
+  width: 1px;
+}
+
+.contact-details {
+  display: grid;
+  gap: 30px;
+}
+
+.contact-detail strong,
+.contact-form span,
+.footer-nav h3,
+.footer-top-link,
+.footer-nav a {
+  color: var(--walnut);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.contact-detail a,
+.contact-detail span {
+  color: var(--walnut);
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1.55;
+  margin-top: 8px;
+}
+
+.social-links,
+.footer-social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.social-links a,
+.footer-social-links a {
+  align-items: center;
+  border: 1px solid rgba(var(--text-rgb), 0.34);
+  border-radius: 999px;
+  color: var(--walnut);
+  display: inline-flex;
+  font-size: 0.74rem;
+  font-weight: 700;
+  height: 34px;
+  justify-content: center;
+  letter-spacing: 0.08em;
+  width: 34px;
+}
+
+.social-icon {
+  display: block;
+  fill: none;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+  width: 17px;
+}
+
+.social-icon path {
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-links a:hover,
+.footer-social-links a:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--sand);
+}
+
+.contact-form {
+  display: grid;
+  gap: 18px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: transparent;
+  border: 1px solid rgba(var(--text-rgb), 0.58);
+  border-radius: 18px;
+  color: var(--walnut);
+  font: inherit;
+  font-size: 1rem;
+  padding: 13px 15px;
+  width: 100%;
+}
+
+.contact-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.contact-form button {
+  border: 0;
+  cursor: pointer;
+  justify-self: start;
+  margin-top: 2px;
+}
+
+/* Footer */
+.site-footer {
+  background: var(--warm-beige);
+  border-top: 1px solid rgba(var(--text-rgb), 0.2);
+  padding: clamp(56px, 7vw, 92px) clamp(20px, 5vw, 72px);
+  position: relative;
+}
+
+.footer-top-link {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  position: absolute;
+  right: clamp(20px, 5vw, 72px);
+  top: 18px;
+}
+
+.footer-top-link span:last-child {
+  align-items: center;
+  border: 1px solid rgba(var(--text-rgb), 0.5);
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.95rem;
+  height: 24px;
+  justify-content: center;
+  line-height: 1;
+  width: 24px;
+}
+
+.footer-inner {
+  align-items: center;
+  display: grid;
+  gap: clamp(46px, 8vw, 120px);
+  grid-template-columns: minmax(280px, 1fr) minmax(220px, 0.8fr);
+  margin: 0 auto;
+  max-width: 1120px;
+}
+
+.footer-brand {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-mirror-logo {
+  align-items: center;
+  display: flex;
+  height: 178px;
+  justify-content: center;
+  position: relative;
+  width: 144px;
+}
+
+.footer-mirror-frame {
+  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
+    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.footer-mirror-copy {
+  align-items: center;
+  color: var(--walnut);
+  display: flex;
+  flex-direction: column;
+  inset: 34% 25% 31%;
+  justify-content: center;
+  position: absolute;
+}
+
+.footer-mirror-copy span {
+  font-size: 0.48rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.footer-mirror-copy strong {
+  font-family: var(--font-script), "Brush Script MT", cursive;
+  font-size: 2.25rem;
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.footer-brand p {
+  color: var(--walnut);
+  line-height: 1.55;
+  margin: 18px 0 0;
+  max-width: 340px;
+}
+
+.footer-social-links {
+  justify-content: center;
+}
+
+.footer-nav h3 {
+  border-bottom: 1px solid rgba(var(--text-rgb), 0.34);
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  padding-bottom: 18px;
+}
+
+.footer-nav div {
+  display: grid;
+  gap: 18px 44px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 28px;
+}
+
+.footer-nav a:hover {
+  color: var(--clay);
+}
+
+@media (max-width: 800px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-layout::before {
+    display: none;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-nav div {
+    margin-inline: auto;
+    max-width: 420px;
+  }
+
+  .reviews-window {
+    height: 350px;
+  }
+
+  .reviews-track {
+    gap: 18px;
+  }
+
+  .review-card {
+    flex-basis: calc((100% - 18px) / 2);
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid {
+    gap: 24px 14px;
+  }
+
+  .reviews-window {
+    height: 360px;
+  }
+
+  .review-card {
+    border-radius: 22px;
+    padding: 28px 24px;
+  }
+
+  .contact-inner h2 {
+    font-size: 2.1rem;
+  }
+
+  .footer-nav div {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top-link {
+    position: static;
+    justify-content: flex-end;
+    margin-bottom: 34px;
+  }
+}
