@@ -131,6 +131,27 @@ a {
   color: var(--warm-beige);
 }
 
+/* Inner pages use the same nav layout, but on a light background. */
+.page-nav {
+  background: rgba(var(--background-rgb), 0.94);
+  border-bottom: 1px solid rgba(var(--text-rgb), 0.12);
+  left: auto;
+  padding-block: 22px;
+  position: sticky;
+  right: auto;
+}
+
+.page-nav .nav-group,
+.page-nav .nav-brand {
+  color: var(--walnut);
+  text-shadow: none;
+}
+
+.page-nav .nav-group a:hover,
+.page-nav .nav-brand:hover {
+  color: var(--clay);
+}
+
 .hero-content {
   align-items: center;
   color: var(--background);

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 // This component is a Client Component because it uses state and a timer.
@@ -79,8 +80,8 @@ export default function CategoryShowcase({ categories }) {
 
             {/* The buttons sit below the rounded rectangle, as separate actions. */}
             <div className="showcase-actions">
-              <a href="/investment">See Packages</a>
-              <a href="#contact">Book Session</a>
+              <Link href={activeCategory.investmentHref}>See Packages</Link>
+              <Link href="/#contact">Book Session</Link>
             </div>
 
             {/* The bow image stays below the buttons as a small finishing detail. */}

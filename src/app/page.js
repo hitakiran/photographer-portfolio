@@ -3,6 +3,7 @@ import CategoryShowcase from "@/components/CategoryShowcase";
 import ContactFooter from "@/components/ContactFooter";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import ReviewsSection from "@/components/ReviewsSection";
+import SiteHeader from "@/components/SiteHeader";
 import StatsSection from "@/components/StatsSection";
 import {
   aboutContent,
@@ -16,7 +17,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="site-shell">
+    <main className="site-shell" id="top">
       <section className="hero-section" id="home">
         {/* Hero background photo. The dark overlay is added in CSS. */}
         <Image
@@ -29,28 +30,7 @@ export default function Home() {
         />
 
         {/* Top navigation is split left and right, with the site name centered. */}
-        <header className="main-nav" aria-label="Main navigation">
-          <nav className="nav-group" aria-label="Homepage sections">
-            {navLinks.left.map((link) => (
-              <a href={link.href} key={link.label}>
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* This is the simple text logo in the middle of the nav row. */}
-          <a className="nav-brand" href="#home" aria-label="Captured by Carla home">
-            {heroContent.navLogo}
-          </a>
-
-          <nav className="nav-group nav-group-right" aria-label="Site pages">
-            {navLinks.right.map((link) => (
-              <a href={link.href} key={link.label}>
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        </header>
+        <SiteHeader navLinks={navLinks} navLogo={heroContent.navLogo} variant="hero" />
 
         {/* This group keeps the mirror, tagline, button, and arrow centered together. */}
         <div className="hero-content">

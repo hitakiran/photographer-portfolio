@@ -3,14 +3,14 @@
 
 export const navLinks = {
   left: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "FAQ", href: "/#faq" },
   ],
   right: [
     { label: "Portfolio", href: "/portfolio" },
     { label: "Investment", href: "/investment" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/#contact" },
   ],
 };
 
@@ -28,6 +28,7 @@ export const heroContent = {
 export const categoryShowcase = [
   {
     id: "business-branding",
+    investmentHref: "/investment#brands",
     category: "Brands",
     label: "Personal brands with presence, polish, and personality.",
     layoutVariant: "layout-one",
@@ -40,6 +41,7 @@ export const categoryShowcase = [
   },
   {
     id: "portraits",
+    investmentHref: "/investment#portraits",
     category: "Portraits",
     label: "Soft, expressive portraits made to feel like you.",
     layoutVariant: "layout-two",
@@ -52,6 +54,7 @@ export const categoryShowcase = [
   },
   {
     id: "couples",
+    investmentHref: "/investment#couples",
     category: "Couples",
     label: "Honest connection, gentle direction, and room to be playful.",
     layoutVariant: "layout-three",
@@ -64,6 +67,7 @@ export const categoryShowcase = [
   },
   {
     id: "wedding",
+    investmentHref: "/investment#wedding",
     category: "Wedding",
     label: "Romantic wedding stories with an editorial, timeless feeling.",
     layoutVariant: "layout-four",
@@ -76,6 +80,7 @@ export const categoryShowcase = [
   },
   {
     id: "families",
+    investmentHref: "/investment#families",
     category: "Families",
     label: "Warm family photos that feel relaxed, connected, and real.",
     layoutVariant: "layout-five",
@@ -187,11 +192,11 @@ export const contactContent = {
   ],
   footerText: "Bay Area photographer creating warm, timeless images since 2019.",
   footerNav: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Home", href: "/#home" },
+    { label: "About", href: "/#about" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "Investment", href: "/investment" },
-    { label: "Contact", href: "#contact" },
+    { label: "Contact", href: "/#contact" },
   ],
 };
