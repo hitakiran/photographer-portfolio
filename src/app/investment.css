@@ -93,7 +93,7 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 0.92;
-  margin: 10px 0 0;
+  margin: 0;
   text-transform: uppercase;
 }
 
@@ -104,18 +104,31 @@
   margin-top: clamp(38px, 6vw, 68px);
 }
 
+.investment-package-grid.has-two-packages {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-inline: auto;
+  max-width: 860px;
+}
+
 .investment-package-card {
   background: var(--sand);
   border: 1px solid rgba(var(--text-rgb), 0.12);
   border-radius: 28px;
   box-shadow: 0 18px 42px rgba(var(--text-rgb), 0.08);
   color: var(--walnut);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   min-height: 430px;
   padding: clamp(28px, 4vw, 42px);
   text-align: left;
+}
+
+.investment-package-header {
+  /*
+    A consistent header area keeps each feature list starting at the same
+    height across a row, even when descriptions have different lengths.
+  */
+  min-height: clamp(220px, 17vw, 260px);
 }
 
 .investment-package-label {
@@ -135,20 +148,40 @@
   margin: 0;
 }
 
-.investment-package-card strong {
+.investment-package-description {
+  color: var(--dusty-olive);
+  font-size: 1.02rem;
+  line-height: 1.45;
+  margin: 16px 0 0;
+}
+
+.investment-package-price {
   color: var(--clay);
-  display: block;
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  display: grid;
+  gap: 5px;
   font-weight: 500;
   line-height: 1;
-  margin-top: 18px;
+  margin-top: 24px;
+}
+
+.investment-package-price span:first-child {
+  color: var(--dusty-olive);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.investment-package-price span:last-child {
+  color: var(--clay);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
 }
 
 .investment-package-card ul {
   display: grid;
   gap: 12px;
   list-style: none;
-  margin: 30px 0;
+  margin: 0;
   padding: 0;
 }
 
@@ -158,8 +191,9 @@
   padding-top: 12px;
 }
 
-.investment-package-card .text-button {
+.investment-inquiry-button {
   justify-content: center;
+  margin-top: clamp(30px, 4vw, 46px);
   text-align: center;
 }
 
@@ -170,6 +204,10 @@
 
   .investment-package-card {
     min-height: auto;
+  }
+
+  .investment-package-header {
+    min-height: 0;
   }
 }
 

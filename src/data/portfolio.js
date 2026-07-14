@@ -1,7 +1,7 @@
 // Placeholder portfolio data for the Portfolio page.
 // Later, these objects can map to a Supabase "photos" table.
 
-export const portfolioCategories = ["Brands", "Portraits", "Couples", "Wedding", "Families"];
+export const portfolioCategories = ["Couples", "Wedding", "Portraits", "Families", "Brands"];
 
 export const portfolioPhotos = [
   {

@@ -5,11 +5,11 @@ export const navLinks = {
   left: [
     { label: "Home", href: "/#home" },
     { label: "About", href: "/#about" },
-    { label: "FAQ", href: "/#faq" },
+    { label: "Portfolio", href: "/portfolio" },
   ],
   right: [
-    { label: "Portfolio", href: "/portfolio" },
     { label: "Investment", href: "/investment" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Contact", href: "/#contact" },
   ],
 };
@@ -19,39 +19,13 @@ export const heroContent = {
   name: "Carla Santos",
   since: "since 2019",
   specialty: "Photography",
-  tagline: "A Bay Area photographer.",
+  tagline: "bay area photographer + beyond.",
   portfolioButton: "View Portfolio",
   image_url:
     "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85",
 };
 
 export const categoryShowcase = [
-  {
-    id: "business-branding",
-    investmentHref: "/investment#brands",
-    category: "Brands",
-    label: "Personal brands with presence, polish, and personality.",
-    layoutVariant: "layout-one",
-    photos: [
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=700&q=85",
-    ],
-  },
-  {
-    id: "portraits",
-    investmentHref: "/investment#portraits",
-    category: "Portraits",
-    label: "Soft, expressive portraits made to feel like you.",
-    layoutVariant: "layout-two",
-    photos: [
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=85",
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
-    ],
-  },
   {
     id: "couples",
     investmentHref: "/investment#couples",
@@ -79,6 +53,19 @@ export const categoryShowcase = [
     ],
   },
   {
+    id: "portraits",
+    investmentHref: "/investment#portraits",
+    category: "Portraits",
+    label: "Soft, expressive portraits made to feel like you.",
+    layoutVariant: "layout-two",
+    photos: [
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
+    ],
+  },
+  {
     id: "families",
     investmentHref: "/investment#families",
     category: "Families",
@@ -89,6 +76,19 @@ export const categoryShowcase = [
       "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=700&q=85",
       "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=700&q=85",
+    ],
+  },
+  {
+    id: "business-branding",
+    investmentHref: "/investment#brands",
+    category: "Brands",
+    label: "Personal brands with presence, polish, and personality.",
+    layoutVariant: "layout-one",
+    photos: [
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=85",
+      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=700&q=85",
     ],
   },
 ];
@@ -105,7 +105,7 @@ export const aboutContent = {
 };
 
 export const statsContent = {
-  heading: "My Stats",
+  heading: "Stats",
   stats: [
     {
       id: "years",
@@ -120,10 +120,10 @@ export const statsContent = {
       label: "Photos Delivered",
     },
     {
-      id: "followers",
-      value: 70,
-      displayValue: "70K",
-      label: "Followers",
+      id: "clients",
+      value: 300,
+      displayValue: "300+",
+      label: "# of Clients",
     },
     {
       id: "cities",
@@ -167,13 +167,8 @@ export const contactContent = {
   details: [
     {
       label: "Email",
-      value: "capturedbycarla@example.com",
-      href: "mailto:capturedbycarla@example.com",
-    },
-    {
-      label: "Phone",
-      value: "(000) 000-0000",
-      href: "tel:0000000000",
+      value: "capturedbycarlas@gmail.com",
+      href: "mailto:capturedbycarlas@gmail.com",
     },
     {
       label: "Address",
@@ -190,13 +185,13 @@ export const contactContent = {
     { id: "contact-phone", label: "Phone", type: "tel" },
     { id: "contact-email", label: "Email", type: "email" },
   ],
-  footerText: "Bay Area photographer creating warm, timeless images since 2019.",
+  footerText: "bay area photographer + beyond.",
   footerNav: [
     { label: "Home", href: "/#home" },
     { label: "About", href: "/#about" },
-    { label: "FAQ", href: "/#faq" },
     { label: "Portfolio", href: "/portfolio" },
     { label: "Investment", href: "/investment" },
+    { label: "FAQ", href: "/#faq" },
     { label: "Contact", href: "/#contact" },
   ],
 };

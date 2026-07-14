@@ -1,0 +1,218 @@
+/* Inquiry page */
+.inquiry-page {
+  background: var(--sand);
+  min-height: 100vh;
+}
+
+.inquiry-hero {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: clamp(72px, 9vw, 120px) clamp(20px, 5vw, 72px)
+    clamp(18px, 3vw, 30px);
+  text-align: center;
+}
+
+.inquiry-hero h1 {
+  color: var(--walnut);
+  font-size: clamp(3.2rem, 7vw, 6.8rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 0.94;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.inquiry-lace-strip {
+  background-image: url("/images/design.png?v=1");
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto 46px;
+  /* Tint design.png to the same Accent color used on other lace dividers. */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(9%)
+    saturate(693%) hue-rotate(31deg) brightness(91%) contrast(87%);
+  height: 46px;
+  margin-top: clamp(24px, 4vw, 42px);
+  width: 100%;
+}
+
+.inquiry-form-section {
+  padding: clamp(38px, 6vw, 72px) clamp(18px, 5vw, 72px)
+    clamp(82px, 10vw, 140px);
+}
+
+.inquiry-form {
+  background: var(--warm-beige);
+  border: 1px solid rgba(var(--text-rgb), 0.1);
+  border-radius: 34px;
+  box-shadow: 0 22px 56px rgba(var(--text-rgb), 0.08);
+  color: var(--walnut);
+  display: grid;
+  gap: clamp(24px, 4vw, 38px);
+  margin: 0 auto;
+  max-width: 980px;
+  padding: clamp(28px, 5vw, 62px);
+}
+
+.inquiry-form-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.inquiry-form label,
+.inquiry-fieldset {
+  display: grid;
+  gap: 10px;
+}
+
+.inquiry-form span,
+.inquiry-fieldset legend {
+  color: var(--walnut);
+  font-size: clamp(0.94rem, 1.2vw, 1.04rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.inquiry-fieldset {
+  border: 1px solid rgba(var(--text-rgb), 0.16);
+  border-radius: 24px;
+  margin: 0;
+  padding: clamp(20px, 4vw, 30px);
+}
+
+.inquiry-fieldset legend {
+  padding: 0 10px;
+}
+
+.inquiry-helper {
+  color: var(--dusty-olive);
+  font-size: 1rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.inquiry-form input,
+.inquiry-form select,
+.inquiry-form textarea {
+  background: rgba(var(--background-rgb), 0.72);
+  border: 1px solid rgba(var(--text-rgb), 0.38);
+  border-radius: 18px;
+  color: var(--walnut);
+  font: inherit;
+  font-size: 1.02rem;
+  padding: 14px 16px;
+  width: 100%;
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+}
+
+.inquiry-followup {
+  margin-top: 14px;
+}
+
+.inquiry-date-row {
+  align-items: center;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.inquiry-small-button {
+  background: var(--clay);
+  border: 0;
+  border-radius: 999px;
+  color: var(--background);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 14px 18px;
+  text-transform: uppercase;
+}
+
+.selected-date-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.selected-date-list button {
+  background: var(--sand);
+  border: 1px solid rgba(var(--text-rgb), 0.18);
+  border-radius: 999px;
+  color: var(--dusty-olive);
+  cursor: pointer;
+  font: inherit;
+  padding: 8px 12px;
+}
+
+.option-row,
+.meeting-options {
+  display: grid;
+  gap: 12px;
+}
+
+.option-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.option-row label,
+.meeting-options label {
+  align-items: center;
+  background: rgba(var(--background-rgb), 0.62);
+  border: 1px solid rgba(var(--text-rgb), 0.14);
+  border-radius: 18px;
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.option-row input,
+.meeting-options input {
+  width: auto;
+}
+
+.meeting-options {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.meeting-options span {
+  display: grid;
+  gap: 3px;
+  letter-spacing: 0.08em;
+}
+
+.meeting-options strong {
+  color: var(--walnut);
+  font-size: 1rem;
+}
+
+.inquiry-submit-button {
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  justify-self: center;
+  min-height: 50px;
+  min-width: 180px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .inquiry-form-grid,
+  .option-row,
+  .meeting-options {
+    grid-template-columns: 1fr;
+  }
+
+  .inquiry-date-row {
+    grid-template-columns: 1fr;
+  }
+}

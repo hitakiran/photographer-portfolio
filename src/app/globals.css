@@ -6,16 +6,16 @@
     Change these five values later if the brand palette changes.
   */
   --background: #F6F1E8;
-  --section-alternate: #ECE3D5;
-  --text: #473B32;
-  --accent: #80816A;
-  --button: #AF8A6A;
+  --section-alternate: #EDE3D6;
+  --text: #463C32;
+  --accent: #6C6D59;
+  --button: #B2A394;
 
   /* RGB versions let us create transparent overlays using the same palette. */
   --background-rgb: 246, 241, 232;
-  --section-alternate-rgb: 236, 227, 213;
-  --text-rgb: 71, 59, 50;
-  --accent-rgb: 128, 129, 106;
+  --section-alternate-rgb: 237, 227, 214;
+  --text-rgb: 70, 60, 50;
+  --accent-rgb: 108, 109, 89;
 
   /* Older variable names still point to the new theme names for readability. */
   --sand: var(--background);
@@ -27,7 +27,7 @@
 
 @theme inline {
   --color-background: #F6F1E8;
-  --color-foreground: #473B32;
+  --color-foreground: #463C32;
 }
 
 html {
@@ -83,11 +83,13 @@ a {
 
 .main-nav {
   align-items: center;
-  display: grid;
+  --nav-center-offset: clamp(190px, 14vw, 260px);
+  display: flex;
   gap: clamp(18px, 3vw, 48px);
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  justify-content: center;
   left: 0;
   letter-spacing: 0.18em;
+  min-height: 88px;
   /* Desktop nav starts at 100px from each side so links do not hug the edges. */
   padding: 30px clamp(100px, 10vw, 160px);
   position: absolute;
@@ -105,6 +107,25 @@ a {
   font-size: 0.86rem;
   font-weight: 700;
   gap: clamp(16px, 3vw, 34px);
+  /* The left nav group hugs the center logo, matching the right side spacing. */
+  justify-content: flex-end;
+  position: absolute;
+  right: calc(50% + var(--nav-center-offset));
+  top: 50%;
+  transform: translateY(-50%);
+  width: max-content;
+}
+
+.nav-center-stack {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  position: absolute;
+  left: 50%;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .nav-brand {
@@ -112,18 +133,45 @@ a {
   color: var(--background);
   font-size: clamp(1.28rem, 1.9vw, 1.72rem);
   font-weight: 700;
-  grid-column: 2;
   letter-spacing: 0.2em;
   opacity: 1;
-  text-align: center;
   text-shadow: 0 2px 16px rgba(var(--text-rgb), 0.55);
   text-transform: lowercase;
   white-space: nowrap;
 }
 
+.hero-nav-social-links {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.hero-nav-social-links a {
+  align-items: center;
+  border: 1px solid rgba(var(--background-rgb), 0.7);
+  border-radius: 999px;
+  color: var(--background);
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+
+.hero-nav-social-links .social-icon {
+  height: 13px;
+  width: 13px;
+}
+
+.hero-nav-social-links a:hover {
+  background: var(--background);
+  color: var(--walnut);
+}
+
 .nav-group-right {
-  grid-column: 3;
-  justify-content: flex-end;
+  left: calc(50% + var(--nav-center-offset));
+  right: auto;
+  /* The right nav group starts after the center logo for balanced spacing. */
+  justify-content: flex-start;
 }
 
 .nav-group a:hover,
@@ -142,7 +190,8 @@ a {
 }
 
 .page-nav .nav-group,
-.page-nav .nav-brand {
+.page-nav .nav-brand,
+.page-nav .nav-center-stack {
   color: var(--walnut);
   text-shadow: none;
 }
@@ -190,26 +239,10 @@ a {
   color: var(--background);
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  inset: 31% 22% 28%;
+  inset: 38% 22% 34%;
   justify-content: center;
   position: absolute;
   text-align: center;
-}
-
-.mirror-copy span {
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.mirror-detail {
-  /* Top mirror label: larger than before, but still much smaller than the name. */
-  font-size: clamp(0.56rem, 1vw, 0.74rem);
-}
-
-.mirror-specialty {
-  /* Bottom mirror label: slightly larger so "Photography" is easier to read. */
-  font-size: clamp(0.6rem, 1.05vw, 0.8rem);
 }
 
 .mirror-copy strong {
@@ -219,6 +252,31 @@ a {
   line-height: 0.82;
   max-width: 100%;
   text-transform: none;
+}
+
+.mirror-arc-text {
+  color: var(--background);
+  display: block;
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+}
+
+.mirror-arc-label {
+  fill: currentColor;
+  font-family: var(--font-display), Georgia, "Times New Roman", serif;
+  font-size: 7.4px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: none;
+}
+
+.mirror-arc-label-bottom {
+  font-size: 7.8px;
 }
 
 .hero-tagline {
@@ -294,8 +352,9 @@ a {
   background-size: auto 46px;
   bottom: -46px;
   content: "";
-  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
-    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  /* Tint the dark lace art to the site's Accent color. */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(9%)
+    saturate(693%) hue-rotate(31deg) brightness(91%) contrast(87%);
   height: 46px;
   left: 0;
   pointer-events: none;
@@ -592,6 +651,7 @@ a {
 
 .showcase-actions a,
 .text-button {
+  align-items: center;
   background: var(--clay);
   border-radius: 999px;
   color: var(--background);
@@ -599,27 +659,15 @@ a {
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.16em;
+  justify-content: center;
   padding: 13px 22px;
+  text-align: center;
   text-transform: uppercase;
 }
 
 .showcase-actions a:hover,
 .text-button:hover {
   background: var(--walnut);
-}
-
-.showcase-section-decor {
-  /* sectiondecor.png is the ribbon/bow image placed under the buttons. */
-  background-image: url("/images/sectiondecor.png?v=4");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  display: block;
-  height: clamp(86px, 9vw, 142px);
-  /* A little extra margin lowers the bow under the button row. */
-  margin-top: 44px;
-  pointer-events: none;
-  width: min(76%, 500px);
 }
 
 .section-eyebrow {
@@ -721,25 +769,6 @@ a {
   position: relative;
 }
 
-.about-stamp {
-  /*
-    The wax seal sits near the upper-right edge of the About section,
-    like a stamp tucked into the corner of a letter.
-  */
-  background-image: url("/images/stamp.png?v=2");
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: 165%;
-  display: block;
-  height: clamp(76px, 8vw, 104px);
-  pointer-events: none;
-  position: absolute;
-  right: clamp(-60px, -4vw, -28px);
-  top: clamp(-102px, -7vw, -72px);
-  width: clamp(76px, 8vw, 104px);
-  z-index: 2;
-}
-
 .about-eyebrow {
   align-items: baseline;
   display: flex;
@@ -803,16 +832,30 @@ a {
 
 @media (max-width: 800px) {
   .main-nav {
+    display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
+    min-height: auto;
     padding: 22px clamp(22px, 7vw, 48px);
   }
 
   .nav-group,
   .nav-group-right,
-  .nav-brand {
+  .nav-brand,
+  .nav-center-stack {
     grid-column: 1;
     justify-content: center;
+    left: auto;
+    position: static;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: auto;
+  }
+
+  .nav-center-stack {
+    align-items: center;
+    display: flex;
   }
 
   .mirror-logo {
@@ -886,12 +929,6 @@ a {
 
   .showcase-actions {
     margin-top: 14px;
-  }
-
-  .showcase-section-decor {
-    height: 92px;
-    margin-top: 34px;
-    width: min(78%, 340px);
   }
 
   .about-section {

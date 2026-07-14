@@ -30,6 +30,12 @@ export default function InvestmentPackages({ categories }) {
 
   const activeCategory =
     categories.find((category) => category.id === activeCategoryId) || categories[0];
+  const activeTitle = activeCategory.collectionTitle || activeCategory.name;
+  const activeLabel = activeCategory.sectionLabel || activeCategory.name;
+  const packageGridClassName =
+    activeCategory.packages.length === 2
+      ? "investment-package-grid has-two-packages"
+      : "investment-package-grid";
 
   return (
     <section className="investment-packages-section" aria-labelledby="investment-packages-heading">
@@ -50,17 +56,18 @@ export default function InvestmentPackages({ categories }) {
 
       {/* This id lets direct links like /investment#wedding land on this category. */}
       <div className="investment-category-panel" id={activeCategory.id}>
-        <p className="section-eyebrow">Packages</p>
-        <h2 id="investment-packages-heading">{activeCategory.name}</h2>
-        <p>{activeCategory.intro}</p>
+        <h2 id="investment-packages-heading">{activeTitle}</h2>
+        {activeCategory.intro && <p>{activeCategory.intro}</p>}
 
-        <div className="investment-package-grid">
+        <div className={packageGridClassName}>
           {activeCategory.packages.map((packageItem) => (
             <article className="investment-package-card" key={packageItem.id}>
-              <div>
-                <p className="investment-package-label">{activeCategory.name}</p>
+              <div className="investment-package-header">
+                <p className="investment-package-label">{activeLabel}</p>
                 <h3>{packageItem.name}</h3>
-                <strong>{packageItem.price}</strong>
+                {packageItem.description && (
+                  <p className="investment-package-description">{packageItem.description}</p>
+                )}
               </div>
 
               <ul>
@@ -69,12 +76,24 @@ export default function InvestmentPackages({ categories }) {
                 ))}
               </ul>
 
-              <Link className="text-button" href="/#contact">
-                Book This Package
-              </Link>
+              <strong className="investment-package-price">
+                {packageItem.price.startsWith("begins at ") ? (
+                  <>
+                    <span>begins at</span>
+                    <span>{packageItem.price.replace("begins at ", "")}</span>
+                  </>
+                ) : (
+                  <span>{packageItem.price}</span>
+                )}
+              </strong>
             </article>
           ))}
         </div>
+
+        {/* One inquiry button keeps the package cards clean and points to the new form. */}
+        <Link className="text-button investment-inquiry-button" href="/inquiry">
+          Inquiry
+        </Link>
       </div>
     </section>
   );

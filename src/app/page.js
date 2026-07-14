@@ -2,6 +2,7 @@ import Image from "next/image";
 import CategoryShowcase from "@/components/CategoryShowcase";
 import ContactFooter from "@/components/ContactFooter";
 import MarqueeStrip from "@/components/MarqueeStrip";
+import MirrorArcText from "@/components/MirrorArcText";
 import ReviewsSection from "@/components/ReviewsSection";
 import SiteHeader from "@/components/SiteHeader";
 import StatsSection from "@/components/StatsSection";
@@ -30,7 +31,12 @@ export default function Home() {
         />
 
         {/* Top navigation is split left and right, with the site name centered. */}
-        <SiteHeader navLinks={navLinks} navLogo={heroContent.navLogo} variant="hero" />
+        <SiteHeader
+          navLinks={navLinks}
+          navLogo={heroContent.navLogo}
+          socialLinks={contactContent.socialLinks}
+          variant="hero"
+        />
 
         {/* This group keeps the mirror, tagline, button, and arrow centered together. */}
         <div className="hero-content">
@@ -44,12 +50,15 @@ export default function Home() {
               priority
               className="mirror-frame"
             />
+            <MirrorArcText
+              bottomText={heroContent.specialty}
+              className="mirror-arc-text"
+              idPrefix="hero-mirror"
+              topText={heroContent.since}
+            />
             <div className="mirror-copy">
-              {/* Small top label inside the mirror. */}
-              <span className="mirror-detail">{heroContent.since}</span>
+              {/* Keep the editable full name separate from the mirror image. */}
               <strong>{heroContent.name}</strong>
-              {/* Small bottom label inside the mirror. */}
-              <span className="mirror-specialty">{heroContent.specialty}</span>
             </div>
           </div>
 
@@ -89,8 +98,6 @@ export default function Home() {
         </div>
 
         <div className="about-copy">
-          {/* Stamp decoration sits near the top-right of the About text area. */}
-          <span className="about-stamp" aria-hidden="true" />
           {/* Split "ABOUT me" so each word can use its own existing font. */}
           <p className="section-eyebrow about-eyebrow">
             <span>{aboutContent.eyebrow}</span>

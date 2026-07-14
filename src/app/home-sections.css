@@ -22,8 +22,9 @@
   background-repeat: repeat-x;
   background-size: auto 46px;
   content: "";
-  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
-    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  /* Tint the dark lace art to the site's Accent color. */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(9%)
+    saturate(693%) hue-rotate(31deg) brightness(91%) contrast(87%);
   height: 46px;
   left: 0;
   pointer-events: none;
@@ -242,8 +243,9 @@
   background-repeat: repeat-x;
   background-size: auto 46px;
   content: "";
-  filter: brightness(0) saturate(100%) invert(22%) sepia(14%)
-    saturate(694%) hue-rotate(343deg) brightness(94%) contrast(89%);
+  /* Tint the dark lace art to the site's Accent color. */
+  filter: brightness(0) saturate(100%) invert(42%) sepia(9%)
+    saturate(693%) hue-rotate(31deg) brightness(91%) contrast(87%);
   height: 46px;
   left: 0;
   pointer-events: none;
@@ -302,7 +304,8 @@
 
 .contact-details {
   display: grid;
-  gap: 30px;
+  /* Keep Email, Address, and Social close together in the left column. */
+  gap: 18px;
 }
 
 .contact-detail strong,
@@ -473,23 +476,40 @@
   color: var(--walnut);
   display: flex;
   flex-direction: column;
-  inset: 34% 25% 31%;
+  inset: 39% 18% 35%;
   justify-content: center;
   position: absolute;
-}
-
-.footer-mirror-copy span {
-  font-size: 0.48rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  white-space: nowrap;
+  text-align: center;
 }
 
 .footer-mirror-copy strong {
   font-family: var(--font-script), "Brush Script MT", cursive;
-  font-size: 2.25rem;
+  font-size: 1.62rem;
   font-weight: 400;
-  line-height: 0.9;
+  letter-spacing: 0;
+  line-height: 0.86;
+  text-transform: none;
+}
+
+.footer-mirror-arcs {
+  color: var(--walnut);
+  display: block;
+  height: 100%;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.footer-mirror-arcs .mirror-arc-label {
+  font-size: 7px;
+  letter-spacing: 0.06em;
+}
+
+.footer-mirror-arcs .mirror-arc-label-bottom {
+  font-size: 7.2px;
 }
 
 .footer-brand p {
@@ -517,6 +537,8 @@
   display: grid;
   gap: 18px 44px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
   margin-top: 28px;
 }
 

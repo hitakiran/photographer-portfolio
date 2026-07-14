@@ -76,8 +76,8 @@ export default function StatsSection({ content }) {
       return stat.displayValue;
     }
 
-    // While counting, keep helpful suffixes visible so numbers like 70K
-    // visibly animate as 12K, 45K, 70K instead of plain 12, 45, 70.
+    // While counting, keep helpful suffixes visible so numbers like 300+
+    // visibly animate as 42+, 180+, 300+ instead of plain 42, 180, 300.
     if (stat.displayValue.includes("K")) {
       return `${currentNumber}K`;
     }

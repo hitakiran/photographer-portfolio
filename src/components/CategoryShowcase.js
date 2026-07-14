@@ -81,11 +81,9 @@ export default function CategoryShowcase({ categories }) {
             {/* The buttons sit below the rounded rectangle, as separate actions. */}
             <div className="showcase-actions">
               <Link href={activeCategory.investmentHref}>See Packages</Link>
-              <Link href="/#contact">Book Session</Link>
+              <Link href="/inquiry">Inquiry</Link>
             </div>
 
-            {/* The bow image stays below the buttons as a small finishing detail. */}
-            <span className="showcase-section-decor" aria-hidden="true" />
           </div>
         </div>
 
