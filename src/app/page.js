@@ -6,6 +6,7 @@ import MirrorArcText from "@/components/MirrorArcText";
 import ReviewsSection from "@/components/ReviewsSection";
 import SiteHeader from "@/components/SiteHeader";
 import StatsSection from "@/components/StatsSection";
+import { createClient } from "@/lib/supabase/server";
 import {
   aboutContent,
   categoryShowcase,
@@ -16,13 +17,74 @@ import {
   statsContent,
 } from "@/data/homepage";
 
-export default function Home() {
+function getSiteImageUrl(siteImages, imageKey, fallbackUrl) {
+  const matchingImage = siteImages.find((image) => image.image_key === imageKey);
+
+  // If Supabase has not been filled in yet, keep the existing placeholder photo.
+  return matchingImage?.image_url || fallbackUrl;
+}
+
+function getCategoryPhotos(portfolioImages, categoryName, fallbackPhotos) {
+  const matchingPhotos = portfolioImages
+    .filter((image) => image.category === categoryName && image.image_url)
+    .map((image) => image.image_url);
+
+  // Only fall back when a category has no database photos yet.
+  if (matchingPhotos.length === 0) {
+    return fallbackPhotos;
+  }
+
+  return matchingPhotos;
+}
+
+async function getHomepageImageData() {
+  const supabase = await createClient();
+  const categoryNames = categoryShowcase.map((category) => category.category);
+
+  // These two queries only fetch public image data. Decorative design files stay local.
+  const [siteImagesResult, portfolioImagesResult] = await Promise.all([
+    supabase
+      .from("site_images")
+      .select("id, page, image_key, image_url")
+      .eq("page", "home")
+      .in("image_key", ["hero_banner", "about_portrait"]),
+    supabase
+      .from("portfolio_images")
+      .select("id, category, image_url, created_at")
+      .in("category", categoryNames)
+      .order("created_at", { ascending: false }),
+  ]);
+
+  return {
+    siteImages: siteImagesResult.data || [],
+    portfolioImages: portfolioImagesResult.data || [],
+  };
+}
+
+export default async function Home() {
+  const { siteImages, portfolioImages } = await getHomepageImageData();
+
+  const liveHeroContent = {
+    ...heroContent,
+    image_url: getSiteImageUrl(siteImages, "hero_banner", heroContent.image_url),
+  };
+
+  const liveAboutContent = {
+    ...aboutContent,
+    image_url: getSiteImageUrl(siteImages, "about_portrait", aboutContent.image_url),
+  };
+
+  const liveCategoryShowcase = categoryShowcase.map((category) => ({
+    ...category,
+    photos: getCategoryPhotos(portfolioImages, category.category, category.photos),
+  }));
+
   return (
     <main className="site-shell" id="top">
       <section className="hero-section" id="home">
         {/* Hero background photo. The dark overlay is added in CSS. */}
         <Image
-          src={heroContent.image_url}
+          src={liveHeroContent.image_url}
           alt="Placeholder wedding photography hero"
           fill
           priority
@@ -33,7 +95,7 @@ export default function Home() {
         {/* Top navigation is split left and right, with the site name centered. */}
         <SiteHeader
           navLinks={navLinks}
-          navLogo={heroContent.navLogo}
+          navLogo={liveHeroContent.navLogo}
           socialLinks={contactContent.socialLinks}
           variant="hero"
         />
@@ -51,23 +113,23 @@ export default function Home() {
               className="mirror-frame"
             />
             <MirrorArcText
-              bottomText={heroContent.specialty}
+              bottomText={liveHeroContent.specialty}
               className="mirror-arc-text"
               idPrefix="hero-mirror"
-              topText={heroContent.since}
+              topText={liveHeroContent.since}
             />
             <div className="mirror-copy">
               {/* Keep the editable full name separate from the mirror image. */}
-              <strong>{heroContent.name}</strong>
+              <strong>{liveHeroContent.name}</strong>
             </div>
           </div>
 
           {/* Short editable intro line under the mirror logo. */}
-          <p className="hero-tagline">{heroContent.tagline}</p>
+          <p className="hero-tagline">{liveHeroContent.tagline}</p>
 
           {/* This button links to the future Portfolio page. */}
           <a className="text-button hero-portfolio-button" href="/portfolio">
-            {heroContent.portfolioButton}
+            {liveHeroContent.portfolioButton}
           </a>
 
           {/* The arrow links to the next homepage section. */}
@@ -78,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* Section 2: rotating placeholder category collage. */}
-      <CategoryShowcase categories={categoryShowcase} />
+      <CategoryShowcase categories={liveCategoryShowcase} />
 
       {/* Section 3: placeholder About Me section. */}
       <section className="about-section" id="about" aria-labelledby="about-heading">
@@ -88,7 +150,7 @@ export default function Home() {
           {/* The photo sits inside the open center of the frame image. */}
           <div className="about-photo-window">
             <Image
-              src={aboutContent.image_url}
+              src={liveAboutContent.image_url}
               alt="Placeholder portrait of photographer Carla Santos"
               fill
               sizes="(max-width: 768px) 90vw, 420px"
@@ -100,14 +162,14 @@ export default function Home() {
         <div className="about-copy">
           {/* Split "ABOUT me" so each word can use its own existing font. */}
           <p className="section-eyebrow about-eyebrow">
-            <span>{aboutContent.eyebrow}</span>
+            <span>{liveAboutContent.eyebrow}</span>
             <span className="about-eyebrow-script">me</span>
           </p>
           {/* This heading reuses the same script font as the mirror logo. */}
           <h2 className="about-heading-script" id="about-heading">
-            {aboutContent.heading}
+            {liveAboutContent.heading}
           </h2>
-          {aboutContent.paragraphs.map((paragraph) => (
+          {liveAboutContent.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
           <a className="text-button" href="#contact">

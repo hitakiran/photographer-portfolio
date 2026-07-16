@@ -1,107 +1,51 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useState } from "react";
+import GalleryGrid from "@/components/portfolio/GalleryGrid";
+import Sidebar from "@/components/portfolio/Sidebar";
 
-// PortfolioGallery needs to be a Client Component because it uses filter
-// buttons and watches each image as it scrolls into view.
-export default function PortfolioGallery({ categories, photos }) {
+// PortfolioGallery controls which category is selected and passes the filtered
+// image list down to the masonry gallery.
+export default function PortfolioGallery({ categories, heading, intro, photos }) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [visiblePhotoIds, setVisiblePhotoIds] = useState([]);
-  const cardRefs = useRef({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const filterTabs = ["All", ...categories];
-  const filteredPhotos =
-    activeCategory === "All"
-      ? photos
-      : photos.filter((photo) => photo.category === activeCategory);
+  const filteredPhotos = useMemo(() => {
+    if (activeCategory === "All") {
+      return photos;
+    }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
+    return photos.filter((photo) => photo.category === activeCategory);
+  }, [activeCategory, photos]);
 
-          const photoId = entry.target.dataset.photoId;
-
-          // Store each photo id once, so the pop animation only runs the
-          // first time that photo enters the viewport.
-          setVisiblePhotoIds((currentIds) => {
-            if (currentIds.includes(photoId)) {
-              return currentIds;
-            }
-
-            return [...currentIds, photoId];
-          });
-
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.18 },
-    );
-
-    filteredPhotos.forEach((photo) => {
-      const cardElement = cardRefs.current[photo.id];
-
-      if (cardElement && !visiblePhotoIds.includes(photo.id)) {
-        observer.observe(cardElement);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, [filteredPhotos, visiblePhotoIds]);
+  function chooseCategory(category) {
+    setActiveCategory(category);
+    setIsMenuOpen(false);
+  }
 
   return (
-    <section className="portfolio-gallery-section" aria-labelledby="portfolio-gallery-heading">
-      <div className="portfolio-tabs" aria-label="Filter portfolio by category">
-        {filterTabs.map((category) => (
-          <button
-            className={activeCategory === category ? "is-active" : ""}
-            key={category}
-            onClick={() => setActiveCategory(category)}
-            type="button"
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+    <div className="min-h-screen bg-[var(--sand)] text-[var(--walnut)] lg:grid lg:grid-cols-[300px_minmax(0,1fr)]">
+      <Sidebar
+        activeCategory={activeCategory}
+        categories={categories}
+        isMenuOpen={isMenuOpen}
+        onCategoryChange={chooseCategory}
+        onMenuToggle={() => setIsMenuOpen((currentValue) => !currentValue)}
+      />
 
-      <h2 id="portfolio-gallery-heading" className="sr-only">
-        Portfolio gallery
-      </h2>
+      <main className="px-5 py-12 sm:px-8 lg:col-start-2 lg:px-12 lg:py-16 xl:px-16">
+        <header className="mb-12 max-w-4xl">
+          <p className="section-eyebrow">Portfolio</p>
+          <h1 className="mt-4 max-w-4xl text-5xl font-medium uppercase leading-[0.92] tracking-[0.01em] text-[var(--walnut)] sm:text-6xl xl:text-7xl">
+            {heading}
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-[var(--walnut)]">
+            {intro}
+          </p>
+        </header>
 
-      <div className="portfolio-masonry">
-        {filteredPhotos.map((photo, index) => {
-          const isVisible = visiblePhotoIds.includes(photo.id);
-
-          return (
-            <article
-              className={`portfolio-card${isVisible ? " is-visible" : ""}`}
-              data-photo-id={photo.id}
-              key={photo.id}
-              ref={(element) => {
-                cardRefs.current[photo.id] = element;
-              }}
-              style={{
-                // A tiny stagger makes photos in the same area pop in more naturally.
-                transitionDelay: `${(index % 4) * 70}ms`,
-              }}
-            >
-              <Image
-                alt={photo.caption}
-                height={photo.height}
-                loading={index < 3 ? "eager" : "lazy"}
-                src={photo.image_url}
-                width={photo.width}
-                sizes="(max-width: 720px) 92vw, (max-width: 1100px) 46vw, 31vw"
-              />
-              <p>{photo.caption}</p>
-            </article>
-          );
-        })}
-      </div>
-    </section>
+        <GalleryGrid photos={filteredPhotos} />
+      </main>
+    </div>
   );
 }

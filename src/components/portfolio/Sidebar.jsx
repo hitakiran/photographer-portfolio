@@ -1,0 +1,118 @@
+import Link from "next/link";
+import SocialIcon from "@/components/SocialIcon";
+
+// Social links shown at the bottom of the portfolio sidebar.
+// These are placeholders for now, so Carla's real profile URLs can be added later.
+const socialLinks = [
+  { label: "Instagram", href: "https://instagram.com/" },
+  { label: "Facebook", href: "https://facebook.com/" },
+  { label: "TikTok", href: "https://tiktok.com/" },
+];
+
+function getCategoryLabel(category) {
+  if (category === "All") {
+    return "All";
+  }
+
+  if (category === "Wedding") {
+    return "Weddings";
+  }
+
+  return category;
+}
+
+// Sidebar is the fixed desktop navigation for the Portfolio page.
+// On smaller screens it becomes a compact top menu with a hamburger button.
+export default function Sidebar({
+  activeCategory,
+  categories,
+  isMenuOpen,
+  onCategoryChange,
+  onMenuToggle,
+}) {
+  const sidebarCategories = ["All", ...categories];
+
+  return (
+    <aside className="z-20 border-[rgba(var(--text-rgb),0.12)] bg-[var(--background)] lg:fixed lg:inset-y-0 lg:left-0 lg:flex lg:w-[300px] lg:flex-col lg:border-r">
+      <div className="flex items-center justify-between border-b border-[rgba(var(--text-rgb),0.12)] px-5 py-5 lg:block lg:border-b-0 lg:px-9 lg:py-10">
+        <Link
+          className="text-lg font-bold uppercase leading-none tracking-[0.16em] text-[var(--walnut)]"
+          href="/"
+          aria-label="Captured by Carla home"
+        >
+          Captured
+          <span className="block">by Carla</span>
+        </Link>
+
+        <button
+          aria-expanded={isMenuOpen}
+          aria-label="Open portfolio menu"
+          className="grid h-11 w-11 place-items-center rounded-full border border-[rgba(var(--text-rgb),0.22)] text-xl lg:hidden"
+          onClick={onMenuToggle}
+          type="button"
+        >
+          ☰
+        </button>
+      </div>
+
+      <div
+        className={`${
+          isMenuOpen ? "grid" : "hidden"
+        } gap-10 px-5 py-7 lg:flex lg:flex-1 lg:flex-col lg:px-9 lg:pb-9 lg:pt-8`}
+      >
+        <nav className="grid gap-4" aria-label="Portfolio categories">
+          {sidebarCategories.map((category) => (
+            <button
+              className={`group flex items-center justify-between border-b border-transparent py-2 text-left text-sm font-bold uppercase tracking-[0.18em] transition-all duration-200 ease-out ${
+                activeCategory === category
+                  ? "border-[var(--walnut)] text-[var(--walnut)]"
+                  : "text-[rgba(var(--text-rgb),0.62)] hover:border-[rgba(var(--text-rgb),0.42)] hover:text-[var(--walnut)]"
+              }`}
+              key={category}
+              onClick={() => onCategoryChange(category)}
+              type="button"
+            >
+              <span>{getCategoryLabel(category)}</span>
+              <span
+                className="text-base transition-transform duration-200 ease-out group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                ›
+              </span>
+            </button>
+          ))}
+        </nav>
+
+        <nav className="grid gap-4" aria-label="Portfolio links">
+          <Link
+            className="w-fit border-b border-transparent py-2 text-sm font-bold uppercase tracking-[0.18em] text-[rgba(var(--text-rgb),0.62)] transition-all duration-200 ease-out hover:border-[var(--walnut)] hover:text-[var(--walnut)]"
+            href="/#contact"
+          >
+            Contact
+          </Link>
+        </nav>
+
+        <div className="mt-auto grid gap-6">
+          <div className="flex gap-3" aria-label="Social links">
+            {socialLinks.map((link) => (
+              <a
+                aria-label={link.label}
+                className="grid h-10 w-10 place-items-center rounded-full border border-[rgba(var(--text-rgb),0.24)] text-[var(--walnut)] transition-all duration-200 ease-out hover:bg-[var(--walnut)] hover:text-[var(--background)]"
+                href={link.href}
+                key={link.label}
+                rel="noreferrer"
+                target="_blank"
+              >
+                <SocialIcon label={link.label} />
+              </a>
+            ))}
+          </div>
+
+          <p className="text-xs uppercase leading-relaxed tracking-[0.16em] text-[rgba(var(--text-rgb),0.55)]">
+            © 2026 Captured by Carla
+          </p>
+        </div>
+      </div>
+    </aside>
+  );
+}

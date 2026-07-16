@@ -665,6 +665,15 @@ a {
   text-transform: uppercase;
 }
 
+.showcase-actions a {
+  /*
+    Both paired buttons use the same width so "Inquiry" does not look
+    smaller than "See Packages."
+  */
+  flex: 0 0 178px;
+  min-width: 178px;
+}
+
 .showcase-actions a:hover,
 .text-button:hover {
   background: var(--walnut);

@@ -54,6 +54,9 @@ export default function InvestmentPackages({ categories }) {
         ))}
       </div>
 
+      {/* Decorative lace divider between the tabs and package cards. */}
+      <div className="investment-lace-strip" aria-hidden="true" />
+
       {/* This id lets direct links like /investment#wedding land on this category. */}
       <div className="investment-category-panel" id={activeCategory.id}>
         <h2 id="investment-packages-heading">{activeTitle}</h2>

@@ -43,7 +43,7 @@
   flex-wrap: wrap;
   gap: 14px clamp(18px, 3vw, 42px);
   justify-content: center;
-  margin-bottom: clamp(42px, 6vw, 76px);
+  margin-bottom: clamp(24px, 4vw, 44px);
 }
 
 .investment-tabs a {
@@ -76,6 +76,22 @@
 .investment-tabs a.is-active::after,
 .investment-tabs a:hover::after {
   transform: translateX(-50%) scaleX(1);
+}
+
+.investment-lace-strip {
+  /*
+    design.png is repeated horizontally so the lace looks crisp across
+    the full page width instead of stretched or blurry.
+  */
+  background-image: url("/images/design.png?v=1");
+  background-position: left top;
+  background-repeat: repeat-x;
+  background-size: auto 48px;
+  filter: brightness(0) saturate(100%) invert(42%) sepia(9%)
+    saturate(693%) hue-rotate(31deg) brightness(91%) contrast(87%);
+  height: 48px;
+  margin: 0 calc(clamp(18px, 4vw, 64px) * -1) clamp(38px, 5vw, 62px);
+  pointer-events: none;
 }
 
 .investment-category-panel {
