@@ -34,7 +34,7 @@ export default function GalleryImage({ delay, photo }) {
 
   return (
     <article
-      className={`mb-10 inline-block w-full break-inside-avoid cursor-pointer bg-[var(--background)] p-3 pb-5 shadow-[0_18px_38px_rgba(var(--text-rgb),0.12)] transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] hover:shadow-[0_26px_60px_rgba(var(--text-rgb),0.2)] ${
+      className={`mb-10 inline-block w-full break-inside-avoid cursor-pointer transition-all duration-300 ease-out hover:-translate-y-2 hover:scale-[1.03] ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-7 opacity-0"
       }`}
       ref={imageRef}
@@ -49,9 +49,6 @@ export default function GalleryImage({ delay, photo }) {
         src={photo.image_url}
         width={photo.width}
       />
-      <p className="mt-4 text-sm font-bold uppercase leading-relaxed tracking-[0.14em] text-[var(--dusty-olive)]">
-        {photo.caption}
-      </p>
     </article>
   );
 }

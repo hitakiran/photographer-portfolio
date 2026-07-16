@@ -97,7 +97,7 @@ export default function Sidebar({
             {socialLinks.map((link) => (
               <a
                 aria-label={link.label}
-                className="grid h-10 w-10 place-items-center rounded-full border border-[rgba(var(--text-rgb),0.24)] text-[var(--walnut)] transition-all duration-200 ease-out hover:bg-[var(--walnut)] hover:text-[var(--background)]"
+                className="grid h-10 w-10 place-items-center rounded-full border border-[rgba(var(--text-rgb),0.24)] text-[var(--walnut)] transition-all duration-200 ease-out hover:border-[var(--clay)] hover:text-[var(--clay)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--clay)] active:text-[var(--clay)]"
                 href={link.href}
                 key={link.label}
                 rel="noreferrer"

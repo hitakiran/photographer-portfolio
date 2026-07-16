@@ -2,15 +2,6 @@
 
 import { useState } from "react";
 
-// These are placeholder Zoom times for now. Later, Supabase can replace
-// this array with real availability from Carla's calendar.
-const meetingOptions = [
-  { id: "chat-aug-04-10", label: "August 4", time: "10:00 AM" },
-  { id: "chat-aug-04-6", label: "August 4", time: "6:00 PM" },
-  { id: "chat-aug-06-11", label: "August 6", time: "11:00 AM" },
-  { id: "chat-aug-08-5", label: "August 8", time: "5:00 PM" },
-];
-
 // InquiryForm is a Client Component because it shows/hides fields based on
 // the visitor's choices.
 export default function InquiryForm({ categories }) {
@@ -19,6 +10,7 @@ export default function InquiryForm({ categories }) {
   const [dateInput, setDateInput] = useState("");
   const [selectedDates, setSelectedDates] = useState([]);
   const [foundMe, setFoundMe] = useState("Instagram");
+  const foundMeOptions = ["Instagram", "TikTok", "Facebook", "Word of Mouth", "Other"];
 
   const activeCategory =
     categories.find((category) => category.id === sessionType) || categories[0];
@@ -54,6 +46,12 @@ export default function InquiryForm({ categories }) {
 
   return (
     <form className="inquiry-form" onSubmit={handleSubmit}>
+      <p className="inquiry-intro-message">
+        This is an inquiry form. Once you fill it out, you will receive a few times
+        to choose from for a 15-minute call to discuss more details about your
+        photoshoot.
+      </p>
+
       <div className="inquiry-form-grid">
         <label>
           <span>First Name(s)</span>
@@ -104,27 +102,6 @@ export default function InquiryForm({ categories }) {
       </fieldset>
 
       <fieldset className="inquiry-fieldset">
-        <legend>Social Media</legend>
-        <p className="inquiry-helper">Optional handles are helpful, but not required.</p>
-        <div className="inquiry-form-grid">
-          <label>
-            <span>Instagram</span>
-            <input name="instagram" placeholder="@username" type="text" />
-          </label>
-
-          <label>
-            <span>TikTok</span>
-            <input name="tiktok" placeholder="@username" type="text" />
-          </label>
-
-          <label>
-            <span>Facebook</span>
-            <input name="facebook" placeholder="Profile name" type="text" />
-          </label>
-        </div>
-      </fieldset>
-
-      <fieldset className="inquiry-fieldset">
         <legend>Date desired for photoshoot, are you flexible?</legend>
         <div className="inquiry-date-row">
           <input
@@ -155,7 +132,7 @@ export default function InquiryForm({ categories }) {
       </fieldset>
 
       <fieldset className="inquiry-fieldset">
-        <legend>Would you prefer morning or evening availability?</legend>
+        <legend>Would you prefer morning or evening availability for the photoshoot?</legend>
         <div className="option-row">
           <label>
             <input name="availability" type="radio" value="morning" />
@@ -179,21 +156,6 @@ export default function InquiryForm({ categories }) {
         <input name="location" placeholder="City, venue, or general location" type="text" />
       </label>
 
-      <fieldset className="inquiry-fieldset">
-        <legend>Pre-Shoot Meeting with Carla: Select a date for a 15-min Zoom chat</legend>
-        <div className="meeting-options">
-          {meetingOptions.map((meeting) => (
-            <label key={meeting.id}>
-              <input name="meetingSlot" type="radio" value={meeting.id} />
-              <span>
-                <strong>{meeting.label}</strong>
-                {meeting.time}
-              </span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
       <label>
         <span>
           Tell me about yourself and the vision for the project! If you are inquiring for a
@@ -208,14 +170,42 @@ export default function InquiryForm({ categories }) {
       </label>
 
       <fieldset className="inquiry-fieldset">
+        <legend>Social Media</legend>
+        <p className="inquiry-helper">Optional handles are helpful, but not required.</p>
+        <div className="inquiry-form-grid">
+          <label>
+            <span>Instagram</span>
+            <input name="instagram" placeholder="@username" type="text" />
+          </label>
+
+          <label>
+            <span>TikTok</span>
+            <input name="tiktok" placeholder="@username" type="text" />
+          </label>
+
+          <label>
+            <span>Facebook</span>
+            <input name="facebook" placeholder="Profile name" type="text" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset className="inquiry-fieldset">
         <legend>Where did you find me?</legend>
-        <select name="foundMe" value={foundMe} onChange={(event) => setFoundMe(event.target.value)}>
-          <option>Instagram</option>
-          <option>TikTok</option>
-          <option>Facebook</option>
-          <option>Word of Mouth</option>
-          <option>Other</option>
-        </select>
+        <div className="option-row option-row-wrap">
+          {foundMeOptions.map((option) => (
+            <label key={option}>
+              <input
+                checked={foundMe === option}
+                name="foundMe"
+                onChange={(event) => setFoundMe(event.target.value)}
+                type="radio"
+                value={option}
+              />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
 
         {foundMe === "Other" && (
           <label className="inquiry-followup">

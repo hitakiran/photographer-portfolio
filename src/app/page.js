@@ -127,10 +127,15 @@ export default async function Home() {
           {/* Short editable intro line under the mirror logo. */}
           <p className="hero-tagline">{liveHeroContent.tagline}</p>
 
-          {/* This button links to the future Portfolio page. */}
-          <a className="text-button hero-portfolio-button" href="/portfolio">
-            {liveHeroContent.portfolioButton}
-          </a>
+          {/* These buttons give visitors a clear next step from the hero. */}
+          <div className="hero-actions">
+            <a className="text-button hero-portfolio-button" href="/portfolio">
+              {liveHeroContent.portfolioButton}
+            </a>
+            <a className="text-button hero-inquiry-button" href="/inquiry">
+              Inquiry
+            </a>
+          </div>
 
           {/* The arrow links to the next homepage section. */}
           <a className="hero-scroll-link" href="#styles" aria-label="Scroll to photography styles">

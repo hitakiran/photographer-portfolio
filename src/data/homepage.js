@@ -135,7 +135,7 @@ export const statsContent = {
 };
 
 export const reviewsContent = {
-  heading: "What clients are saying",
+  heading: "Testimonials",
   reviews: [
     {
       id: "alice",
